@@ -22,7 +22,7 @@ import { hexToRgba, opacityValues } from './colorUtils';
 /**
  * Get palette configuration for a given mode
  */
-function getPaletteForMode(mode: PaletteMode): ThemeOptions['palette'] {
+function getPaletteForMode(mode: PaletteMode): NonNullable<ThemeOptions['palette']> {
   if (mode === 'dark') {
     // Dark mode palette
     return {
