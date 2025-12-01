@@ -43,3 +43,15 @@ export type {
 // Component exports
 export { Button } from './components/Button';
 export type { ButtonProps } from './components/Button';
+
+export { Checkbox } from './components/Checkbox';
+export type { CheckboxProps } from './components/Checkbox';
+
+export { Icon } from './components/Icon';
+export type { IconProps, IconName } from './components/Icon';
+
+export { Radio } from './components/Radio';
+export type { RadioProps } from './components/Radio';
+
+export { Typography } from './components/Typography';
+export type { TypographyProps } from './components/Typography';

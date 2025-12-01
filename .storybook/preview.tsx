@@ -1,6 +1,15 @@
 import type { Preview } from '@storybook/react';
+import React from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { theme } from '../src/theme';
+
+// Load Nunito font from Google Fonts (only in browser environment)
+if (typeof document !== 'undefined') {
+  const link = document.createElement('link');
+  link.href = 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap';
+  link.rel = 'stylesheet';
+  document.head.appendChild(link);
+}
 
 const preview: Preview = {
   parameters: {
@@ -22,4 +31,3 @@ const preview: Preview = {
 };
 
 export default preview;
-

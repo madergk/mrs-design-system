@@ -81,6 +81,10 @@ export const Variants: Story = {
 
 // Colors showcase
 export const Colors: Story = {
+  args: {
+    disabled: false,
+  },
+
   render: () => (
     <Stack spacing={2}>
       <Stack spacing={2} direction="row" flexWrap="wrap" gap={2}>

@@ -11,8 +11,6 @@
  * - Component: Component-specific overrides
  */
 
-import { hexToRgba, opacityValues } from './colorUtils';
-
 // ============================================================================
 // PRIMITIVE TOKENS
 // ============================================================================
@@ -40,7 +38,6 @@ export const primitiveColors = {
 /**
  * Primitive Typography Tokens
  * Base typography values used to compose typography variants
- * Font sizes are defined in rem for better accessibility
  */
 export const primitiveTypography = {
   fontFamily: {
@@ -48,18 +45,22 @@ export const primitiveTypography = {
     base: 'Nunito',
   },
   fontSize: {
-    xs: 0.75, // 12px
-    sm: 0.8125, // 13px
-    base: 0.875, // 14px
-    md: 1, // 16px
-    lg: 1.25, // 20px
-    xl: 1.5, // 24px
-    '3xl': 3.75, // 60px
+    '0.75rem': 12,
+    '0.8125rem': 13,
+    '0.875rem': 14,
+    '1rem': 16,
+    '1.25rem': 20,
+    '1.5rem': 24,
+    '2.125rem': 34, // h4
+    '3rem': 48, // h3
+    '3.75rem': 60, // h2
+    '6rem': 96, // h1
   },
   fontWeight: {
     regular: 400,
     medium: 500,
     semiBold: 600,
+    bold: 700,
   },
 } as const;
 
@@ -142,49 +143,49 @@ export const semanticColors = {
   primary: {
     main: primitiveColors.verones, // #00686f - aliased from material/colors/verones
     dark: '#004e53',
-    contrastText: primitiveColors.white,
+    contrastText: '#ffffff',
     states: {
-      selected: hexToRgba(primitiveColors.teal, opacityValues.selected),
-      hover: hexToRgba(primitiveColors.teal, opacityValues.hover),
+      selected: '#00999929', // rgba with opacity
+      hover: '#0099991f', // rgba with opacity
     },
   },
   secondary: {
     main: '#99cc00',
-    contrastText: hexToRgba(primitiveColors.black, opacityValues.highEmphasis),
+    contrastText: '#000000de', // rgba with opacity
   },
   error: {
     main: '#ab1a1a',
-    contrastText: primitiveColors.white,
+    contrastText: '#ffffff',
   },
   warning: {
     main: '#dfa00a',
   },
   info: {
     main: '#2481b8',
-    contrastText: primitiveColors.white,
+    contrastText: '#ffffff',
   },
   success: {
     // Note: Success color not explicitly defined in Figma variables
     // Using Material Design default or can be added
     main: '#2e7d32',
-    contrastText: primitiveColors.white,
+    contrastText: '#ffffff',
   },
   background: {
-    default: primitiveColors.white,
+    default: '#ffffff',
     paper: {
-      elevation0: primitiveColors.white,
-      elevation1: primitiveColors.white,
+      elevation0: '#ffffff',
+      elevation1: '#ffffff',
     },
   },
   text: {
-    primary: hexToRgba(primitiveColors.black, opacityValues.highEmphasis),
-    secondary: hexToRgba(primitiveColors.black, opacityValues.mediumEmphasis),
+    primary: '#000000de', // rgba with opacity
+    secondary: '#00000099', // rgba with opacity
   },
   action: {
-    active: hexToRgba(primitiveColors.black, opacityValues.active),
-    selected: hexToRgba(primitiveColors.black, opacityValues.divider),
+    active: '#0000008f', // rgba with opacity
+    selected: '#0000001f', // rgba with opacity
   },
-  divider: hexToRgba(primitiveColors.black, opacityValues.divider),
+  divider: '#0000001f', // rgba with opacity
 } as const;
 
 // ============================================================================
@@ -200,82 +201,74 @@ export const typographyVariants = {
   // Base typography variants
   caption: {
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize.xs,
+    fontSize: primitiveTypography.fontSize['0.75rem'],
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.2,
   },
   body1: {
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize.md,
+    fontSize: primitiveTypography.fontSize['1rem'],
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.5,
   },
   body2: {
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize.base,
+    fontSize: primitiveTypography.fontSize['0.875rem'],
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.429,
   },
   h1: {
-    // Note: h1 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['3xl'], // Using h2 size as base
+    fontSize: primitiveTypography.fontSize['6rem'], // 96px from Figma
     fontWeight: primitiveTypography.fontWeight.semiBold,
-    lineHeight: 1.2,
+    lineHeight: 1.167,
   },
   h2: {
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['3xl'],
+    fontSize: primitiveTypography.fontSize['3.75rem'], // 60px from Figma
     fontWeight: primitiveTypography.fontWeight.semiBold,
     lineHeight: 1.2,
   },
   h3: {
-    // Note: h3 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize.xl,
-    fontWeight: primitiveTypography.fontWeight.regular,
-    lineHeight: 1.334,
+    fontSize: primitiveTypography.fontSize['3rem'], // 48px from Figma
+    fontWeight: primitiveTypography.fontWeight.semiBold,
+    lineHeight: 1.167,
   },
   h4: {
-    // Note: h4 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize.lg,
-    fontWeight: primitiveTypography.fontWeight.regular,
-    lineHeight: 1.4,
+    fontSize: primitiveTypography.fontSize['2.125rem'], // 34px from Figma
+    fontWeight: primitiveTypography.fontWeight.semiBold,
+    lineHeight: 1.235,
   },
   h5: {
-    // Note: h5 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize.lg,
-    fontWeight: primitiveTypography.fontWeight.regular,
-    lineHeight: 1.5,
+    fontSize: primitiveTypography.fontSize['1.5rem'], // 24px from Figma
+    fontWeight: primitiveTypography.fontWeight.semiBold,
+    lineHeight: 1.334,
   },
   h6: {
-    // Note: h6 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize.md,
-    fontWeight: primitiveTypography.fontWeight.medium,
+    fontSize: primitiveTypography.fontSize['1.25rem'], // 20px from Figma
+    fontWeight: primitiveTypography.fontWeight.semiBold,
     lineHeight: 1.6,
   },
   subtitle1: {
-    // Note: subtitle1 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize.md,
+    fontSize: primitiveTypography.fontSize['1rem'], // 16px from Figma
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.75,
   },
   subtitle2: {
-    // Note: subtitle2 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize.base,
+    fontSize: primitiveTypography.fontSize['0.875rem'], // 14px from Figma
     fontWeight: primitiveTypography.fontWeight.medium,
     lineHeight: 1.57,
   },
   overline: {
-    // Note: overline not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize.xs,
-    fontWeight: primitiveTypography.fontWeight.medium,
+    fontSize: primitiveTypography.fontSize['0.75rem'], // 12px from Figma
+    fontWeight: primitiveTypography.fontWeight.bold, // 700 from Figma
     lineHeight: 2.66,
     textTransform: 'uppercase',
   },
@@ -283,19 +276,19 @@ export const typographyVariants = {
   button: {
     small: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.sm,
+      fontSize: primitiveTypography.fontSize['0.8125rem'],
       fontWeight: primitiveTypography.fontWeight.semiBold,
       lineHeight: 24,
     },
     medium: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.base,
+      fontSize: primitiveTypography.fontSize['0.875rem'],
       fontWeight: primitiveTypography.fontWeight.semiBold,
       lineHeight: 24,
     },
     large: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.md,
+      fontSize: primitiveTypography.fontSize['1rem'],
       fontWeight: primitiveTypography.fontWeight.semiBold,
       lineHeight: 24,
     },
@@ -303,7 +296,7 @@ export const typographyVariants = {
   chip: {
     label: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.sm,
+      fontSize: primitiveTypography.fontSize['0.8125rem'],
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 18,
     },
@@ -311,19 +304,19 @@ export const typographyVariants = {
   input: {
     label: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.xs,
+      fontSize: primitiveTypography.fontSize['0.75rem'],
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 12,
     },
     value: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.md,
+      fontSize: primitiveTypography.fontSize['1rem'],
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 24,
     },
     helper: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.xs,
+      fontSize: primitiveTypography.fontSize['0.75rem'],
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 1.66,
     },
@@ -331,7 +324,7 @@ export const typographyVariants = {
   table: {
     header: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.base,
+      fontSize: primitiveTypography.fontSize['0.875rem'],
       fontWeight: primitiveTypography.fontWeight.medium,
       lineHeight: 24,
     },
@@ -339,13 +332,13 @@ export const typographyVariants = {
   alert: {
     title: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.md,
+      fontSize: primitiveTypography.fontSize['1rem'],
       fontWeight: primitiveTypography.fontWeight.medium,
       lineHeight: 1.5,
     },
     description: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.base,
+      fontSize: primitiveTypography.fontSize['0.875rem'],
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 1.429,
     },
@@ -353,13 +346,13 @@ export const typographyVariants = {
   avatar: {
     initialsLg: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.lg,
+      fontSize: primitiveTypography.fontSize['1.25rem'],
       fontWeight: primitiveTypography.fontWeight.semiBold,
       lineHeight: 20,
     },
     initialsMd: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize.xs,
+      fontSize: primitiveTypography.fontSize['0.75rem'],
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 12,
     },
@@ -377,21 +370,21 @@ export const typographyVariants = {
 export const componentTokens = {
   rating: {
     activeFill: '#ffb400',
-    enabledBorder: hexToRgba(primitiveColors.black, opacityValues.outlinedBorder),
+    enabledBorder: '#0000003b', // rgba with opacity
   },
   chip: {
-    defaultCloseFill: primitiveColors.black,
+    defaultCloseFill: '#000000',
     defaultEnabledBorder: '#bdbdbd',
   },
   input: {
     standard: {
-      enabledBorder: hexToRgba(primitiveColors.black, opacityValues.standardUnderline),
+      enabledBorder: '#0000006b', // rgba with opacity
     },
     filled: {
-      enabledFill: hexToRgba(primitiveColors.black, opacityValues.filledInput),
+      enabledFill: '#0000000f', // rgba with opacity
     },
     outlined: {
-      enabledBorder: hexToRgba(primitiveColors.black, opacityValues.outlinedBorder),
+      enabledBorder: '#0000003b', // rgba with opacity
     },
   },
   alert: {

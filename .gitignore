@@ -10,6 +10,10 @@ node_modules
 /build
 /dist
 /.storybook-static
+/storybook-static
+
+# Build logs
+build-storybook.log
 
 # Misc
 .DS_Store
