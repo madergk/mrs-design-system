@@ -1,6 +1,6 @@
 /**
  * Button Component
- * 
+ *
  * A Material UI Button component customized with design tokens from Figma.
  * Supports all variants: contained, outlined, text
  * Supports all sizes: small, medium, large
@@ -9,8 +9,8 @@
  */
 
 import React from 'react';
-import MuiButton, { ButtonProps as MuiButtonProps } from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+import type { ButtonProps as MuiButtonProps } from '@mui/material/Button';
+import MuiButton from '@mui/material/Button';
 
 export interface ButtonProps extends Omit<MuiButtonProps, 'color'> {
   /**
@@ -31,17 +31,10 @@ export interface ButtonProps extends Omit<MuiButtonProps, 'color'> {
 }
 
 /**
- * Styled Button component that uses design tokens from theme
- * All styling is handled via the theme configuration in src/theme/theme.ts
- */
-const StyledButton = styled(MuiButton)(({ theme }) => ({
-  // Additional customizations can be added here if needed
-  // Most styling is handled via theme.components.MuiButton
-}));
-
-/**
  * Button component
- * 
+ *
+ * All styling is handled via the theme configuration in src/theme/theme.ts
+ *
  * @example
  * ```tsx
  * <Button variant="contained" color="primary" size="large">
@@ -52,9 +45,9 @@ const StyledButton = styled(MuiButton)(({ theme }) => ({
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, ...props }, ref) => {
     return (
-      <StyledButton ref={ref} {...props}>
+      <MuiButton ref={ref} {...props}>
         {children}
-      </StyledButton>
+      </MuiButton>
     );
   }
 );
@@ -62,4 +55,3 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button';
 
 export default Button;
-

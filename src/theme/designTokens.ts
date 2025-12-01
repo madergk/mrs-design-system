@@ -1,15 +1,17 @@
 /**
  * Design Tokens
- * 
+ *
  * This file contains all design tokens extracted from Figma variables.
  * These tokens are structured to align with Material UI's theme system
  * and follow the hierarchy: Primitives → Semantic → Component tokens.
- * 
+ *
  * Token Structure:
  * - Primitives: Base values (colors, typography, spacing)
  * - Semantic: Contextual tokens that reference primitives
  * - Component: Component-specific overrides
  */
+
+import { hexToRgba, opacityValues } from './colorUtils';
 
 // ============================================================================
 // PRIMITIVE TOKENS
@@ -23,16 +25,22 @@
 export const primitiveColors = {
   // Primary color (verones) - referenced by primary/main
   verones: '#00686f',
-  
+  teal: '#009999',
+
   // Additional primitive colors
   deepPurple: {
     500: '#673ab7',
   },
+
+  // Grayscale
+  black: '#000000',
+  white: '#ffffff',
 } as const;
 
 /**
  * Primitive Typography Tokens
  * Base typography values used to compose typography variants
+ * Font sizes are defined in rem for better accessibility
  */
 export const primitiveTypography = {
   fontFamily: {
@@ -40,13 +48,13 @@ export const primitiveTypography = {
     base: 'Nunito',
   },
   fontSize: {
-    '0.75rem': 12,
-    '0.8125rem': 13,
-    '0.875rem': 14,
-    '1rem': 16,
-    '1.25rem': 20,
-    '1.5rem': 24,
-    '3.75rem': 60,
+    xs: 0.75, // 12px
+    sm: 0.8125, // 13px
+    base: 0.875, // 14px
+    md: 1, // 16px
+    lg: 1.25, // 20px
+    xl: 1.5, // 24px
+    '3xl': 3.75, // 60px
   },
   fontWeight: {
     regular: 400,
@@ -134,49 +142,49 @@ export const semanticColors = {
   primary: {
     main: primitiveColors.verones, // #00686f - aliased from material/colors/verones
     dark: '#004e53',
-    contrastText: '#ffffff',
+    contrastText: primitiveColors.white,
     states: {
-      selected: '#00999929', // rgba with opacity
-      hover: '#0099991f', // rgba with opacity
+      selected: hexToRgba(primitiveColors.teal, opacityValues.selected),
+      hover: hexToRgba(primitiveColors.teal, opacityValues.hover),
     },
   },
   secondary: {
     main: '#99cc00',
-    contrastText: '#000000de', // rgba with opacity
+    contrastText: hexToRgba(primitiveColors.black, opacityValues.highEmphasis),
   },
   error: {
     main: '#ab1a1a',
-    contrastText: '#ffffff',
+    contrastText: primitiveColors.white,
   },
   warning: {
     main: '#dfa00a',
   },
   info: {
     main: '#2481b8',
-    contrastText: '#ffffff',
+    contrastText: primitiveColors.white,
   },
   success: {
     // Note: Success color not explicitly defined in Figma variables
     // Using Material Design default or can be added
     main: '#2e7d32',
-    contrastText: '#ffffff',
+    contrastText: primitiveColors.white,
   },
   background: {
-    default: '#ffffff',
+    default: primitiveColors.white,
     paper: {
-      elevation0: '#ffffff',
-      elevation1: '#ffffff',
+      elevation0: primitiveColors.white,
+      elevation1: primitiveColors.white,
     },
   },
   text: {
-    primary: '#000000de', // rgba with opacity
-    secondary: '#00000099', // rgba with opacity
+    primary: hexToRgba(primitiveColors.black, opacityValues.highEmphasis),
+    secondary: hexToRgba(primitiveColors.black, opacityValues.mediumEmphasis),
   },
   action: {
-    active: '#0000008f', // rgba with opacity
-    selected: '#0000001f', // rgba with opacity
+    active: hexToRgba(primitiveColors.black, opacityValues.active),
+    selected: hexToRgba(primitiveColors.black, opacityValues.divider),
   },
-  divider: '#0000001f', // rgba with opacity
+  divider: hexToRgba(primitiveColors.black, opacityValues.divider),
 } as const;
 
 // ============================================================================
@@ -192,81 +200,81 @@ export const typographyVariants = {
   // Base typography variants
   caption: {
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['0.75rem'],
+    fontSize: primitiveTypography.fontSize.xs,
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.2,
   },
   body1: {
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['1rem'],
+    fontSize: primitiveTypography.fontSize.md,
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.5,
   },
   body2: {
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['0.875rem'],
+    fontSize: primitiveTypography.fontSize.base,
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.429,
   },
   h1: {
     // Note: h1 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['3.75rem'], // Using h2 size as base
+    fontSize: primitiveTypography.fontSize['3xl'], // Using h2 size as base
     fontWeight: primitiveTypography.fontWeight.semiBold,
     lineHeight: 1.2,
   },
   h2: {
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['3.75rem'],
+    fontSize: primitiveTypography.fontSize['3xl'],
     fontWeight: primitiveTypography.fontWeight.semiBold,
     lineHeight: 1.2,
   },
   h3: {
     // Note: h3 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['1.5rem'],
+    fontSize: primitiveTypography.fontSize.xl,
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.334,
   },
   h4: {
     // Note: h4 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['1.25rem'],
+    fontSize: primitiveTypography.fontSize.lg,
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.4,
   },
   h5: {
     // Note: h5 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['1.25rem'],
+    fontSize: primitiveTypography.fontSize.lg,
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.5,
   },
   h6: {
     // Note: h6 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['1rem'],
+    fontSize: primitiveTypography.fontSize.md,
     fontWeight: primitiveTypography.fontWeight.medium,
     lineHeight: 1.6,
   },
   subtitle1: {
     // Note: subtitle1 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['1rem'],
+    fontSize: primitiveTypography.fontSize.md,
     fontWeight: primitiveTypography.fontWeight.regular,
     lineHeight: 1.75,
   },
   subtitle2: {
     // Note: subtitle2 not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['0.875rem'],
+    fontSize: primitiveTypography.fontSize.base,
     fontWeight: primitiveTypography.fontWeight.medium,
     lineHeight: 1.57,
   },
   overline: {
     // Note: overline not explicitly defined in Figma, using Material Design defaults
     fontFamily: primitiveTypography.fontFamily.base,
-    fontSize: primitiveTypography.fontSize['0.75rem'],
+    fontSize: primitiveTypography.fontSize.xs,
     fontWeight: primitiveTypography.fontWeight.medium,
     lineHeight: 2.66,
     textTransform: 'uppercase',
@@ -275,19 +283,19 @@ export const typographyVariants = {
   button: {
     small: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['0.8125rem'],
+      fontSize: primitiveTypography.fontSize.sm,
       fontWeight: primitiveTypography.fontWeight.semiBold,
       lineHeight: 24,
     },
     medium: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['0.875rem'],
+      fontSize: primitiveTypography.fontSize.base,
       fontWeight: primitiveTypography.fontWeight.semiBold,
       lineHeight: 24,
     },
     large: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['1rem'],
+      fontSize: primitiveTypography.fontSize.md,
       fontWeight: primitiveTypography.fontWeight.semiBold,
       lineHeight: 24,
     },
@@ -295,7 +303,7 @@ export const typographyVariants = {
   chip: {
     label: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['0.8125rem'],
+      fontSize: primitiveTypography.fontSize.sm,
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 18,
     },
@@ -303,19 +311,19 @@ export const typographyVariants = {
   input: {
     label: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['0.75rem'],
+      fontSize: primitiveTypography.fontSize.xs,
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 12,
     },
     value: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['1rem'],
+      fontSize: primitiveTypography.fontSize.md,
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 24,
     },
     helper: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['0.75rem'],
+      fontSize: primitiveTypography.fontSize.xs,
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 1.66,
     },
@@ -323,7 +331,7 @@ export const typographyVariants = {
   table: {
     header: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['0.875rem'],
+      fontSize: primitiveTypography.fontSize.base,
       fontWeight: primitiveTypography.fontWeight.medium,
       lineHeight: 24,
     },
@@ -331,13 +339,13 @@ export const typographyVariants = {
   alert: {
     title: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['1rem'],
+      fontSize: primitiveTypography.fontSize.md,
       fontWeight: primitiveTypography.fontWeight.medium,
       lineHeight: 1.5,
     },
     description: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['0.875rem'],
+      fontSize: primitiveTypography.fontSize.base,
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 1.429,
     },
@@ -345,13 +353,13 @@ export const typographyVariants = {
   avatar: {
     initialsLg: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['1.25rem'],
+      fontSize: primitiveTypography.fontSize.lg,
       fontWeight: primitiveTypography.fontWeight.semiBold,
       lineHeight: 20,
     },
     initialsMd: {
       fontFamily: primitiveTypography.fontFamily.base,
-      fontSize: primitiveTypography.fontSize['0.75rem'],
+      fontSize: primitiveTypography.fontSize.xs,
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 12,
     },
@@ -369,21 +377,21 @@ export const typographyVariants = {
 export const componentTokens = {
   rating: {
     activeFill: '#ffb400',
-    enabledBorder: '#0000003b', // rgba with opacity
+    enabledBorder: hexToRgba(primitiveColors.black, opacityValues.outlinedBorder),
   },
   chip: {
-    defaultCloseFill: '#000000',
+    defaultCloseFill: primitiveColors.black,
     defaultEnabledBorder: '#bdbdbd',
   },
   input: {
     standard: {
-      enabledBorder: '#0000006b', // rgba with opacity
+      enabledBorder: hexToRgba(primitiveColors.black, opacityValues.standardUnderline),
     },
     filled: {
-      enabledFill: '#0000000f', // rgba with opacity
+      enabledFill: hexToRgba(primitiveColors.black, opacityValues.filledInput),
     },
     outlined: {
-      enabledBorder: '#0000003b', // rgba with opacity
+      enabledBorder: hexToRgba(primitiveColors.black, opacityValues.outlinedBorder),
     },
   },
   alert: {
@@ -427,7 +435,7 @@ export const libraryTokens = {
 /**
  * Token Connection Map
  * Documents the relationship between semantic tokens and primitive tokens
- * 
+ *
  * Key Connections:
  * - primary/main → primitiveColors.verones (material/colors/verones)
  * - All semantic colors reference primitive color values
@@ -454,4 +462,3 @@ export type ComponentTokens = typeof componentTokens;
 export type LibraryTokens = typeof libraryTokens;
 export type PrimitiveZIndex = typeof primitiveZIndex;
 export type PrimitiveTransitions = typeof primitiveTransitions;
-
