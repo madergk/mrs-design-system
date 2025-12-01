@@ -9,7 +9,8 @@
  */
 
 import React from 'react';
-import MuiButton, { ButtonProps as MuiButtonProps } from '@mui/material/Button';
+import type { ButtonProps as MuiButtonProps } from '@mui/material/Button';
+import MuiButton from '@mui/material/Button';
 
 export interface ButtonProps extends Omit<MuiButtonProps, 'color'> {
   /**
@@ -54,4 +55,3 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button';
 
 export default Button;
-

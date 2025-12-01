@@ -1,17 +1,17 @@
 /**
  * Material UI Theme Configuration
- * 
+ *
  * This file creates a Material UI theme using the design tokens from Figma.
  * The theme is structured to match Material UI's theme API and can be used
  * with ThemeProvider to style all components.
  */
 
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import type { ThemeOptions } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import {
   semanticColors,
   typographyVariants,
   primitiveTypography,
-  primitiveSpacing,
   primitiveRadius,
   primitiveBreakpoints,
   primitiveZIndex,
@@ -84,7 +84,7 @@ const themeOptions: ThemeOptions = {
     ].join(','),
     fontSize: 14, // Base font size (used for rem calculations)
     htmlFontSize: 16, // Default browser html font size
-    
+
     // Typography variants - Headings
     h1: {
       fontFamily: typographyVariants.h1.fontFamily,
@@ -358,4 +358,3 @@ export const theme = createTheme(themeOptions);
  * Type export for theme
  */
 export type AppTheme = typeof theme;
-

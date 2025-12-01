@@ -435,7 +435,7 @@ export const libraryTokens = {
 /**
  * Token Connection Map
  * Documents the relationship between semantic tokens and primitive tokens
- * 
+ *
  * Key Connections:
  * - primary/main → primitiveColors.verones (material/colors/verones)
  * - All semantic colors reference primitive color values
@@ -462,4 +462,3 @@ export type ComponentTokens = typeof componentTokens;
 export type LibraryTokens = typeof libraryTokens;
 export type PrimitiveZIndex = typeof primitiveZIndex;
 export type PrimitiveTransitions = typeof primitiveTransitions;
-

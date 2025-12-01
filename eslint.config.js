@@ -18,6 +18,8 @@ export default [
       '*.config.ts',
       '*.config.js',
       'vite.config.ts',
+      'vitest.config.ts',
+      '.storybook/**',
     ],
   },
   js.configs.recommended,
@@ -31,7 +33,6 @@ export default [
         ecmaFeatures: {
           jsx: true,
         },
-        project: './tsconfig.json',
       },
       globals: {
         React: 'readonly',
@@ -41,6 +42,12 @@ export default [
         __dirname: 'readonly',
         module: 'readonly',
         require: 'readonly',
+        HTMLButtonElement: 'readonly',
+        HTMLElement: 'readonly',
+        HTMLInputElement: 'readonly',
+        Document: 'readonly',
+        Window: 'readonly',
+        NodeJS: 'readonly',
       },
     },
     plugins: {

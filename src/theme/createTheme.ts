@@ -4,12 +4,12 @@
  * Creates theme instances for light and dark modes
  */
 
-import { createTheme as createMuiTheme, ThemeOptions, PaletteMode } from '@mui/material/styles';
+import type { ThemeOptions, PaletteMode } from '@mui/material/styles';
+import { createTheme as createMuiTheme } from '@mui/material/styles';
 import {
   semanticColors,
   typographyVariants,
   primitiveTypography,
-  primitiveSpacing,
   primitiveRadius,
   primitiveBreakpoints,
   primitiveZIndex,
