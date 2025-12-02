@@ -228,6 +228,10 @@ const themeOptions: ThemeOptions = {
           textTransform: 'none', // No uppercase transformation
           padding: '8px 16px', // Default padding for medium
           minWidth: '64px', // Minimum width
+          // Disabled state - use &.Mui-disabled for correct CSS specificity
+          '&.Mui-disabled': {
+            opacity: 0.38, // Material Design disabled opacity
+          },
         },
         sizeSmall: {
           fontFamily: `"${typographyVariants.button.small.fontFamily}", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`,
@@ -292,10 +296,6 @@ const themeOptions: ThemeOptions = {
           '&.MuiButton-sizeLarge': {
             padding: '12px 24px',
           },
-        },
-        // Disabled state
-        disabled: {
-          opacity: 0.38, // Material Design disabled opacity
         },
       },
     },
