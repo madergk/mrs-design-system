@@ -1,23 +1,28 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
-import { resolve } from 'path';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+// ES module compatible __dirname replacement
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': resolve(__dirname, './src'),
     },
   },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'MRSDesignSystem',
       formats: ['es'],
-      fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
     },
     rollupOptions: {
+      input: {
+        index: resolve(__dirname, 'src/index.ts'),
+        theme: resolve(__dirname, 'src/theme/index.ts'),
+      },
       external: [
         'react',
         'react-dom',
@@ -27,12 +32,8 @@ export default defineConfig({
         '@emotion/styled',
       ],
       output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          '@mui/material': 'MaterialUI',
-          '@emotion/react': 'EmotionReact',
-          '@emotion/styled': 'EmotionStyled',
+        entryFileNames: (chunkInfo) => {
+          return chunkInfo.name === 'index' ? 'index.js' : `${chunkInfo.name}/index.js`;
         },
       },
     },
