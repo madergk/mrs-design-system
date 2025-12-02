@@ -1,0 +1,240 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/Design Tokens" />
+
+# Design Tokens
+
+Los design tokens son la base de nuestro sistema de diseño. Representan los valores de diseño de forma estructurada y reutilizable.
+
+## 🎯 ¿Qué son los Design Tokens?
+
+Los design tokens son valores pequeños e indivisibles que definen las propiedades visuales de nuestro sistema de diseño. En lugar de usar valores hardcodeados (como `#00686f` o `16px`) directamente en los componentes, usamos tokens que pueden ser referenciados y actualizados centralmente.
+
+**Analogía con Figma**: Si en Figma tienes variables de color, tipografía y espaciado, los design tokens son el equivalente en código.
+
+## 📊 Estructura de Tres Niveles
+
+### Nivel 1: Tokens Primitivos
+
+Los valores más básicos, sin contexto semántico:
+
+```typescript
+// Colores primitivos
+verones: '#00686f'
+gris: '#9e9e9d'
+
+// Tipografía primitiva
+fontSize: {
+  '0.75rem': 12,
+  '0.875rem': 14,
+  '1rem': 16,
+  // ...
+}
+
+// Espaciado
+spacing: 8 // base unit
+```
+
+**¿Cuándo usar?** Raramente directamente. Estos son los "ladrillos" que construyen los demás tokens.
+
+### Nivel 2: Tokens Semánticos
+
+Valores con significado contextual:
+
+```typescript
+// Colores semánticos
+primary: {
+  main: '#00686f',  // viene de verones
+  light: '#...',
+  dark: '#...',
+}
+
+// Tipografía semántica
+body1: {
+  fontSize: '1rem',
+  fontWeight: 400,
+  lineHeight: 1.5,
+}
+```
+
+**¿Cuándo usar?** En la mayoría de los casos. Estos tokens tienen significado y son más fáciles de mantener.
+
+### Nivel 3: Tokens de Componente
+
+Valores específicos para componentes:
+
+```typescript
+button: {
+  medium: {
+    fontSize: '0.875rem',
+    padding: '10px 16px',
+  }
+}
+```
+
+**¿Cuándo usar?** Cuando necesitas valores muy específicos para un componente particular.
+
+## 🔄 Flujo de Tokens
+
+```
+Figma Variables
+    ↓
+Primitive Tokens (designTokens.ts)
+    ↓
+Semantic Tokens (designTokens.ts)
+    ↓
+Component Tokens (designTokens.ts)
+    ↓
+Material UI Theme (theme.ts)
+    ↓
+Componentes React
+```
+
+## 💻 Uso en Código
+
+### Accediendo a Tokens Directamente
+
+```typescript
+import { semanticColors, typographyVariants } from 'mrs-design-system/theme';
+
+// Usar colores semánticos
+const primaryColor = semanticColors.primary.main;
+
+// Usar variantes de tipografía
+const bodyStyle = typographyVariants.body1;
+```
+
+### Usando el Theme de Material UI
+
+```typescript
+import { useTheme } from '@mui/material/styles';
+
+function MyComponent() {
+  const theme = useTheme();
+  
+  return (
+    <Box sx={{ 
+      color: theme.palette.primary.main,        // Token semántico
+      fontSize: theme.typography.body1.fontSize, // Token semántico
+      padding: theme.spacing(2),                 // 16px (2 * 8px)
+    }}>
+      Content
+    </Box>
+  );
+}
+```
+
+### En Componentes con Styled Components
+
+```typescript
+import { styled } from '@mui/material/styles';
+import { semanticColors } from '../theme/designTokens';
+
+const StyledBox = styled(Box)({
+  backgroundColor: semanticColors.background.paper,
+  color: semanticColors.text.primary,
+});
+```
+
+## 🎨 Mapeo Figma → Código
+
+| Figma | Token Path | Ejemplo |
+|-------|------------|---------|
+| Variable `primary/main` | `semanticColors.primary.main` | `#00686f` |
+| Variable `text/primary` | `semanticColors.text.primary` | `#000000de` |
+| Typography `body1` | `typographyVariants.body1` | Config completo |
+| Spacing `1` | `theme.spacing(1)` | `8px` |
+| Radius `md` | `theme.shape.borderRadius` | `12` |
+
+## 📝 Convenciones de Nomenclatura
+
+### Colores
+- **Primitivos**: Nombres descriptivos (`verones`, `gris`)
+- **Semánticos**: Contexto de uso (`primary`, `error`, `text.primary`)
+- **Componentes**: Nombre del componente + propiedad (`button.background`)
+
+### Tipografía
+- **Primitivos**: Tamaños en rem (`'0.875rem'`, `'1rem'`)
+- **Semánticos**: Nombres semánticos (`body1`, `h1`, `button.medium`)
+- **Componentes**: Componente + variante (`button.medium`)
+
+### Espaciado
+- Siempre múltiplos de 8px (unidad base)
+- Usar `theme.spacing()` para valores semánticos
+- Valores directos solo para casos muy específicos
+
+## ⚠️ Mejores Prácticas
+
+### ✅ Hacer
+
+```typescript
+// ✅ Usar tokens semánticos
+sx={{ color: theme.palette.primary.main }}
+
+// ✅ Usar spacing del theme
+sx={{ padding: theme.spacing(2) }}
+
+// ✅ Usar variantes de tipografía
+<Typography variant="body1">Text</Typography>
+```
+
+### ❌ Evitar
+
+```typescript
+// ❌ Valores hardcodeados
+sx={{ color: '#00686f' }}
+
+// ❌ Valores de espaciado hardcodeados
+sx={{ padding: '16px' }}
+
+// ❌ Estilos inline sin tokens
+sx={{ fontSize: '14px', fontWeight: 400 }}
+```
+
+## 🔧 Extender Tokens
+
+Si necesitas agregar nuevos tokens:
+
+1. **Agrega al nivel apropiado** en `src/theme/designTokens.ts`:
+```typescript
+export const semanticColors = {
+  // ... existentes
+  custom: {
+    brand: '#ff0000',
+  },
+};
+```
+
+2. **Actualiza el theme** en `src/theme/theme.ts`:
+```typescript
+const theme = createTheme({
+  palette: {
+    // ... existente
+    custom: {
+      brand: semanticColors.custom.brand,
+    },
+  },
+});
+```
+
+3. **Agrega tipos TypeScript** si es necesario:
+```typescript
+declare module '@mui/material/styles' {
+  interface Palette {
+    custom: {
+      brand: string;
+    };
+  }
+}
+```
+
+## 📚 Recursos
+
+- [Architecture.md](../src/theme/ARCHITECTURE.md) - Arquitectura detallada
+- [designTokens.ts](../src/theme/designTokens.ts) - Implementación completa
+- [Material UI Theming](https://mui.com/material-ui/customization/theming/) - Documentación de MUI
+
+---
+
+**Siguiente**: [Mejores Prácticas](./?path=/docs/introduction-best-practices--docs)
+

@@ -1,0 +1,256 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/Contributing" />
+
+# Guía de Contribución
+
+Gracias por tu interés en contribuir al MRS Design System. Esta guía te ayudará a entender cómo agregar nuevos componentes y mejorar el sistema.
+
+## 🎯 Proceso de Contribución
+
+### 1. Crear un Nuevo Componente
+
+Sigue estos pasos para agregar un componente nuevo:
+
+#### Paso 1: Estructura de Archivos
+
+Crea la estructura estándar:
+
+```
+src/components/YourComponent/
+├── YourComponent.tsx
+├── YourComponent.stories.tsx
+├── YourComponent.test.tsx (opcional)
+└── index.ts
+```
+
+#### Paso 2: Implementar el Componente
+
+```tsx
+// YourComponent.tsx
+import React from 'react';
+import { Box } from '@mui/material';
+import { semanticColors } from '../../theme/designTokens';
+
+export interface YourComponentProps {
+  /**
+   * Description of the prop
+   */
+  children?: React.ReactNode;
+}
+
+export const YourComponent = React.forwardRef<HTMLDivElement, YourComponentProps>(
+  ({ children, ...props }, ref) => {
+    return (
+      <Box
+        ref={ref}
+        sx={{
+          // Usa design tokens aquí
+          color: semanticColors.text.primary,
+          ...props,
+        }}
+      >
+        {children}
+      </Box>
+    );
+  }
+);
+
+YourComponent.displayName = 'YourComponent';
+
+export default YourComponent;
+```
+
+#### Paso 3: Crear Stories
+
+```tsx
+// YourComponent.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { YourComponent } from './YourComponent';
+
+const meta: Meta<typeof YourComponent> = {
+  title: 'Components/YourComponent',
+  component: YourComponent,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Description of your component',
+      },
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof YourComponent>;
+
+export const Default: Story = {
+  args: {
+    children: 'Content',
+  },
+};
+```
+
+#### Paso 4: Exportar el Componente
+
+```tsx
+// index.ts
+export { YourComponent, type YourComponentProps } from './YourComponent';
+export { default } from './YourComponent';
+```
+
+Y agregar al `src/index.ts`:
+
+```tsx
+export { YourComponent } from './components/YourComponent';
+export type { YourComponentProps } from './components/YourComponent';
+```
+
+### 2. Agregar Design Tokens
+
+Si tu componente necesita nuevos tokens:
+
+#### En `src/theme/designTokens.ts`:
+
+```typescript
+export const componentTokens = {
+  // ... existentes
+  yourComponent: {
+    backgroundColor: semanticColors.background.paper,
+    padding: spacing[2], // 16px
+  },
+} as const;
+```
+
+### 3. Actualizar el Theme
+
+Si necesitas personalizar el componente en el theme:
+
+```typescript
+// src/theme/createTheme.ts
+components: {
+  // ... existentes
+  MuiYourComponent: {
+    styleOverrides: {
+      root: {
+        // Estilos personalizados
+      },
+    },
+  },
+}
+```
+
+## 📝 Convenciones de Código
+
+### TypeScript
+
+- Usa tipos explícitos, evita `any`
+- Exporta tipos de props: `export interface ComponentProps`
+- Usa `React.forwardRef` para componentes que necesitan refs
+
+### Estilos
+
+- Usa `sx` prop para estilos inline
+- Usa `styled` de MUI para componentes reutilizables
+- Siempre usa design tokens, nunca valores hardcodeados
+
+### Naming
+
+- Componentes: PascalCase
+- Props: camelCase
+- Archivos: PascalCase para componentes
+
+## 🧪 Testing
+
+### Estructura de Tests
+
+```tsx
+// YourComponent.test.tsx
+import { render, screen } from '@testing-library/react';
+import { ThemeProvider } from '@mui/material';
+import { theme, YourComponent } from '../..';
+
+describe('YourComponent', () => {
+  it('renders correctly', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <YourComponent>Test</YourComponent>
+      </ThemeProvider>
+    );
+    
+    expect(screen.getByText('Test')).toBeInTheDocument();
+  });
+});
+```
+
+## 📚 Documentación
+
+### Documentar Props
+
+Usa JSDoc para documentar props:
+
+```tsx
+export interface YourComponentProps {
+  /**
+   * Description of the prop
+   * @default 'defaultValue'
+   */
+  propName?: string;
+}
+```
+
+### Stories Completas
+
+Incluye stories para:
+- Default state
+- Todas las variantes
+- Todos los tamaños
+- Todos los estados (enabled, disabled, etc.)
+- Ejemplos de uso real
+
+## 🔍 Checklist Antes de Hacer PR
+
+- [ ] Componente sigue la estructura estándar
+- [ ] Usa design tokens (no valores hardcodeados)
+- [ ] Tiene TypeScript types completos
+- [ ] Tiene stories en Storybook
+- [ ] Está exportado en `src/index.ts`
+- [ ] Sigue las convenciones de naming
+- [ ] Tiene documentación JSDoc
+- [ ] Tests pasan (si aplica)
+- [ ] Linter pasa sin errores
+- [ ] Formato de código correcto (Prettier)
+
+## 🚀 Proceso de PR
+
+1. **Fork** el repositorio
+2. **Crea una rama** para tu feature: `git checkout -b feature/new-component`
+3. **Commit** tus cambios: `git commit -m 'Add new component'`
+4. **Push** a tu fork: `git push origin feature/new-component`
+5. **Abre un PR** en el repositorio principal
+
+### Mensaje de PR
+
+Incluye:
+- Descripción del componente/feature
+- Screenshots o ejemplos
+- Lista de cambios
+- Referencias a issues relacionados
+
+## 📖 Recursos
+
+- [Component Template](./?path=/docs/introduction-component-template--docs) - Template para nuevos componentes
+- [Design Tokens Guide](./?path=/docs/introduction-design-tokens--docs) - Guía de tokens
+- [Best Practices](./?path=/docs/introduction-best-practices--docs) - Mejores prácticas
+
+## ❓ Preguntas
+
+Si tienes preguntas:
+1. Revisa la documentación existente
+2. Mira ejemplos de componentes similares
+3. Abre un issue en el repositorio
+
+---
+
+¡Gracias por contribuir! 🎉
+

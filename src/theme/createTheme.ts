@@ -297,6 +297,82 @@ export function createAppTheme(mode: PaletteMode = 'light') {
           },
         },
       },
+      MuiSelect: {
+        styleOverrides: {
+          root: {
+            fontFamily: typographyVariants.input.value.fontFamily,
+            fontSize: `${typographyVariants.input.value.fontSize}rem`,
+            fontWeight: typographyVariants.input.value.fontWeight,
+            lineHeight: typographyVariants.input.value.lineHeight,
+          },
+          icon: {
+            color: semanticColors.text.primary,
+            fontSize: 24,
+          },
+          // Disabled state
+          disabled: {
+            opacity: opacityValues.disabled,
+          },
+        },
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            borderRadius: `${primitiveRadius.md}px`,
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: componentTokens.input.outlined.enabledBorder,
+            },
+            '&:hover:not(.Mui-disabled) .MuiOutlinedInput-notchedOutline': {
+              borderColor: semanticColors.text.primary,
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: semanticColors.primary.main,
+              borderWidth: 2,
+            },
+            '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+              borderColor: semanticColors.error.main,
+            },
+          },
+        },
+      },
+      MuiFilledInput: {
+        styleOverrides: {
+          root: {
+            backgroundColor: componentTokens.input.filled.enabledFill,
+            borderRadius: `${primitiveRadius.md}px ${primitiveRadius.md}px 0 0`,
+            '&:hover:not(.Mui-disabled)': {
+              backgroundColor: hexToRgba(primitiveColors.black, opacityValues.hover),
+            },
+            '&.Mui-focused': {
+              backgroundColor: componentTokens.input.filled.enabledFill,
+            },
+            '&.Mui-error': {
+              backgroundColor: hexToRgba(semanticColors.error.main, 0.04),
+            },
+          },
+        },
+      },
+      MuiInput: {
+        styleOverrides: {
+          root: {
+            '&::before': {
+              borderBottomColor: componentTokens.input.standard.enabledBorder,
+            },
+            '&:hover:not(.Mui-disabled)::before': {
+              borderBottomColor: semanticColors.text.primary,
+            },
+            '&.Mui-focused::after': {
+              borderBottomColor: semanticColors.primary.main,
+            },
+            '&.Mui-error::before': {
+              borderBottomColor: semanticColors.error.main,
+            },
+            '&.Mui-error::after': {
+              borderBottomColor: semanticColors.error.main,
+            },
+          },
+        },
+      },
       MuiTableHead: {
         styleOverrides: {
           root: {
@@ -346,6 +422,235 @@ export function createAppTheme(mode: PaletteMode = 'light') {
           },
           iconEmpty: {
             color: componentTokens.rating.enabledBorder,
+          },
+        },
+      },
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            fontFamily: typographyVariants.tooltip.label.fontFamily,
+            fontSize: `${typographyVariants.tooltip.label.fontSize}rem`, // 0.625rem (10px)
+            fontWeight: typographyVariants.tooltip.label.fontWeight,
+            lineHeight: `${typographyVariants.tooltip.label.lineHeight}px`, // 14px
+            backgroundColor: semanticColors.text.primary, // rgba(0,0,0,0.87) - dark background
+            color: semanticColors.background.default, // white text
+            padding: '4px 8px',
+            borderRadius: '4px',
+          },
+          arrow: {
+            color: semanticColors.text.primary, // Match tooltip background
+          },
+        },
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            // Medium size (default): 40px button, 24px icon, 8px padding
+            width: 40,
+            height: 40,
+            padding: 8,
+            borderRadius: primitiveRadius.rounded, // Fully rounded (999px)
+            '& .MuiSvgIcon-root': {
+              fontSize: 24, // Icon size is always 24px
+            },
+            // Enabled state: no background
+            backgroundColor: 'transparent',
+            // Hover state
+            '&:hover': {
+              backgroundColor: hexToRgba(primitiveColors.black, opacityValues.hover), // rgba(0,0,0,0.08)
+              padding: 4,
+            },
+            // Focus state
+            '&:focus-visible': {
+              backgroundColor: hexToRgba(primitiveColors.black, opacityValues.focus), // rgba(0,0,0,0.08)
+              padding: 4,
+            },
+            // Disabled state
+            '&.Mui-disabled': {
+              '& .MuiSvgIcon-root': {
+                opacity: opacityValues.disabled, // 38% opacity
+                color: primitiveColors.black,
+              },
+            },
+          },
+          // Color variants
+          colorPrimary: {
+            '& .MuiSvgIcon-root': {
+              color: semanticColors.primary.main, // #00686f
+            },
+            '&:hover': {
+              backgroundColor: semanticColors.primary.states.hover, // rgba(0,153,153,0.12) = #0099991f
+            },
+            '&:focus-visible': {
+              backgroundColor: semanticColors.primary.states.hover, // rgba(0,153,153,0.12) = #0099991f
+            },
+            '&.Mui-disabled': {
+              '& .MuiSvgIcon-root': {
+                color: primitiveColors.black,
+              },
+            },
+          },
+          colorError: {
+            '& .MuiSvgIcon-root': {
+              color: semanticColors.error.main, // #ab1a1a
+            },
+            '&:hover': {
+              backgroundColor: hexToRgba(semanticColors.error.main, 0.04), // rgba(211,47,47,0.04)
+            },
+            '&:focus-visible': {
+              backgroundColor: hexToRgba(semanticColors.error.main, 0.3), // rgba(211,47,47,0.3)
+            },
+            '&.Mui-disabled': {
+              '& .MuiSvgIcon-root': {
+                color: primitiveColors.black,
+              },
+            },
+          },
+          colorInherit: {
+            '& .MuiSvgIcon-root': {
+              color: '#212121', // Dark gray for inherit
+            },
+            '&:hover': {
+              backgroundColor: hexToRgba('#212121', 0.04), // rgba(33,33,33,0.04)
+            },
+            '&:focus-visible': {
+              backgroundColor: hexToRgba('#212121', 0.3), // rgba(33,33,33,0.3)
+            },
+            '&.Mui-disabled': {
+              '& .MuiSvgIcon-root': {
+                color: primitiveColors.black,
+              },
+            },
+          },
+          // Size variants
+          sizeSmall: {
+            // Small size: 32px button, 24px icon
+            width: 32,
+            height: 32,
+            padding: 0, // No padding for enabled state
+            '&:hover': {
+              padding: 4,
+            },
+            '&:focus-visible': {
+              padding: 4,
+            },
+            '&:active': {
+              // Pressed state
+              padding: 0,
+            },
+          },
+          sizeMedium: {
+            // Medium size: 40px button, 24px icon, 8px padding
+            width: 40,
+            height: 40,
+            padding: 8,
+            '&:hover': {
+              padding: 4,
+            },
+            '&:focus-visible': {
+              padding: 4,
+            },
+            '&:active': {
+              // Pressed state
+              padding: 0,
+            },
+          },
+          sizeLarge: {
+            // Large size: 48px button, 24px icon, 8px padding
+            width: 48,
+            height: 48,
+            padding: 8,
+            '&:hover': {
+              padding: 4,
+            },
+            '&:focus-visible': {
+              padding: 4,
+            },
+            '&:active': {
+              // Pressed state
+              padding: 0,
+            },
+          },
+        },
+      },
+      MuiSwitch: {
+        styleOverrides: {
+          root: {
+            // Medium size (default): 38px height, 58px width
+            width: 58,
+            height: 38,
+            padding: 0,
+          },
+          switchBase: {
+            padding: 0,
+            '&.Mui-checked': {
+              transform: 'translateX(20px)', // 58px - 38px = 20px offset for medium
+              '& + .MuiSwitch-track': {
+                opacity: 0.5,
+              },
+            },
+            '&.Mui-disabled': {
+              '& + .MuiSwitch-track': {
+                opacity: 1,
+                backgroundColor: 'rgba(0, 0, 0, 0.12)',
+              },
+            },
+            '&.Mui-checked.Mui-disabled': {
+              '& + .MuiSwitch-track': {
+                opacity: 1,
+                backgroundColor: 'rgba(0, 0, 0, 0.12)',
+              },
+            },
+          },
+          thumb: {
+            // Medium size thumb: 38px x 38px
+            width: 38,
+            height: 38,
+            boxShadow: 'none',
+          },
+          track: {
+            // Medium size track: 14px height, 34px width
+            height: 14,
+            width: 34,
+            borderRadius: 100,
+            opacity: 0.38,
+            backgroundColor: primitiveColors.black,
+            // Note: Checked state styling is handled in switchBase section using '&.Mui-checked + .MuiSwitch-track'
+          },
+          sizeSmall: {
+            // Small size: 24px height, 40px width
+            width: 40,
+            height: 24,
+            '& .MuiSwitch-switchBase': {
+              '&.Mui-checked': {
+                transform: 'translateX(16px)', // 40px - 24px = 16px offset for small
+                '& + .MuiSwitch-track': {
+                  opacity: 0.5,
+                },
+              },
+              '&.Mui-disabled': {
+                '& + .MuiSwitch-track': {
+                  opacity: 1,
+                  backgroundColor: 'rgba(0, 0, 0, 0.12)',
+                },
+              },
+              '&.Mui-checked.Mui-disabled': {
+                '& + .MuiSwitch-track': {
+                  opacity: 1,
+                  backgroundColor: 'rgba(0, 0, 0, 0.12)',
+                },
+              },
+            },
+            '& .MuiSwitch-thumb': {
+              // Small size thumb: 24px x 24px
+              width: 24,
+              height: 24,
+            },
+            '& .MuiSwitch-track': {
+              // Small size track: 10px height, 26px width
+              height: 10,
+              width: 26,
+            },
           },
         },
       },

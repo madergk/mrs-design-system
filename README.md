@@ -10,7 +10,7 @@ A comprehensive React design system built on Material UI with design tokens extr
 - ♿ **Accessible**: WCAG compliant components
 - 📱 **Responsive**: Mobile-first design approach
 - 🧪 **Well-Tested**: Comprehensive test coverage with Vitest
-- 📚 **Storybook**: Interactive component documentation
+- 📚 **Storybook**: Interactive component documentation with comprehensive guides
 - 🔧 **TypeScript**: Full type safety and intellisense
 
 ## 📦 Installation
@@ -65,8 +65,14 @@ function App() {
 # Install dependencies
 npm install
 
+# Setup git hooks (runs lint-staged before commits)
+npm run setup-hooks
+
 # Start Storybook
 npm run storybook
+
+# Build static Storybook documentation
+npm run build-storybook
 
 # Run tests
 npm test

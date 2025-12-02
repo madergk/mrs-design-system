@@ -13,7 +13,7 @@ export default [
       'node_modules/**',
       'dist/**',
       'build/**',
-      '.storybook-static/**',
+      'storybook-static/**',
       'coverage/**',
       '*.config.ts',
       '*.config.js',
@@ -22,7 +22,13 @@ export default [
       '.storybook/**',
     ],
   },
-  js.configs.recommended,
+  {
+    ...js.configs.recommended,
+    rules: {
+      ...js.configs.recommended.rules,
+      'no-undef': 'off', // TypeScript handles this better
+    },
+  },
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
@@ -43,8 +49,13 @@ export default [
         module: 'readonly',
         require: 'readonly',
         HTMLButtonElement: 'readonly',
+        HTMLDivElement: 'readonly',
         HTMLElement: 'readonly',
+        HTMLHRElement: 'readonly',
         HTMLInputElement: 'readonly',
+        HTMLLIElement: 'readonly',
+        HTMLUListElement: 'readonly',
+        HTMLOListElement: 'readonly',
         Document: 'readonly',
         Window: 'readonly',
         NodeJS: 'readonly',
@@ -63,6 +74,7 @@ export default [
       ...reactHooksPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
       ...prettierConfig.rules,
+      'no-undef': 'off', // TypeScript handles this better
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -86,6 +98,12 @@ export default [
       react: {
         version: 'detect',
       },
+    },
+  },
+  {
+    files: ['**/*.stories.tsx'],
+    rules: {
+      'react/no-children-prop': 'off', // Storybook often requires passing children as props in args
     },
   },
 ];

@@ -45,6 +45,7 @@ export const primitiveTypography = {
     base: 'Nunito',
   },
   fontSize: {
+    '0.625rem': 10,
     '0.75rem': 12,
     '0.8125rem': 13,
     '0.875rem': 14,
@@ -356,6 +357,20 @@ export const typographyVariants = {
       fontWeight: primitiveTypography.fontWeight.regular,
       lineHeight: 12,
     },
+    initialsSm: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.625rem'],
+      fontWeight: primitiveTypography.fontWeight.regular,
+      lineHeight: 10,
+    },
+  },
+  tooltip: {
+    label: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.625rem'], // 10px
+      fontWeight: primitiveTypography.fontWeight.medium, // 500
+      lineHeight: 14,
+    },
   },
 } as const;
 
@@ -403,6 +418,12 @@ export const componentTokens = {
     warning: {
       color: '#3e2410',
       // background not explicitly defined in Figma
+    },
+  },
+  stepper: {
+    connector: '#9e9e9d',
+    completedStep: {
+      backgroundColor: '#00796b', // Teal color for completed steps
     },
   },
 } as const;
