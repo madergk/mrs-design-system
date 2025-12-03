@@ -7,6 +7,7 @@ Based on [Material UI v7 Theming documentation](https://mui.com/material-ui/cust
 ## ✅ What We Have (Correctly Implemented)
 
 ### 1. Core Theme Structure
+
 - ✅ **Palette**: Complete color system with primary, secondary, error, warning, info, success
 - ✅ **Typography**: Base typography configuration with variants
 - ✅ **Spacing**: 8px base unit correctly configured
@@ -15,6 +16,7 @@ Based on [Material UI v7 Theming documentation](https://mui.com/material-ui/cust
 - ✅ **Components**: Component-level customizations
 
 ### 2. Token Hierarchy
+
 - ✅ **Primitive → Semantic → Component** structure is well-defined
 - ✅ **Token connections** documented (primary/main → verones)
 - ✅ **TypeScript types** properly exported
@@ -22,11 +24,13 @@ Based on [Material UI v7 Theming documentation](https://mui.com/material-ui/cust
 ## ⚠️ Missing Critical Theme Properties
 
 ### 1. zIndex (Critical for Layering)
+
 Material UI uses zIndex for component layering (modals, tooltips, drawers, etc.)
 
 **Current Status**: ❌ Not implemented
 
 **Required**: zIndex tokens for:
+
 - Modal backdrop
 - Modal content
 - Tooltip
@@ -36,35 +40,42 @@ Material UI uses zIndex for component layering (modals, tooltips, drawers, etc.)
 - etc.
 
 ### 2. Transitions (Important for Animations)
+
 Material UI uses transitions for component animations
 
 **Current Status**: ❌ Not implemented
 
 **Required**: Transition tokens for:
+
 - Duration
 - Easing functions
 - Common transitions (create, duration, easing)
 
 ### 3. Incomplete Typography Variants
+
 Material UI has 13 default typography variants
 
 **Current Status**: ⚠️ Partially implemented (only h2, body1, body2, caption, button)
 
 **Missing Variants**:
+
 - h1, h3, h4, h5, h6
 - subtitle1, subtitle2
 - overline
 
 ### 4. Dark Mode Support
+
 Material UI supports light/dark color schemes
 
 **Current Status**: ❌ Not implemented
 
-**Required**: 
+**Required**:
+
 - Color scheme configuration
 - Dark mode palette tokens
 
 ### 5. CSS Variables Support
+
 Material UI v7 supports CSS theme variables
 
 **Current Status**: ❌ Not configured
@@ -76,6 +87,7 @@ Material UI v7 supports CSS theme variables
 ### Priority 1: Essential Additions
 
 1. **Add zIndex Tokens**
+
    ```typescript
    export const zIndexTokens = {
      mobileStepper: 1000,
@@ -89,6 +101,7 @@ Material UI v7 supports CSS theme variables
    ```
 
 2. **Add Transition Tokens**
+
    ```typescript
    export const transitionTokens = {
      duration: {
@@ -116,29 +129,29 @@ Material UI v7 supports CSS theme variables
 
 ### Priority 2: Enhanced Features
 
-4. **Dark Mode Support**
+1. **Dark Mode Support**
    - Create dark mode color tokens
    - Configure colorSchemes in theme
 
-5. **CSS Variables Support**
+2. **CSS Variables Support**
    - Add option to enable CSS variables
    - Useful for SSR and dynamic theming
 
-6. **Custom Theme Variables**
+3. **Custom Theme Variables**
    - Add support for custom theme variables
    - Enable extensibility for design system
 
 ### Priority 3: Design System Enhancements
 
-7. **Shadow/Elevation Tokens**
+1. **Shadow/Elevation Tokens**
    - Material Design uses elevation for depth
    - Add shadow tokens if available in Figma
 
-8. **Component Default Props**
+2. **Component Default Props**
    - Configure default props via theme
    - Better component consistency
 
-9. **Theme Composition Utilities**
+3. **Theme Composition Utilities**
    - Helper functions for theme composition
    - Support for theme nesting/extending
 
@@ -153,16 +166,19 @@ Material UI v7 supports CSS theme variables
 ## 🔧 Implementation Plan
 
 ### Step 1: Add Missing Core Properties
+
 - [ ] Add zIndex tokens
 - [ ] Add transition tokens
 - [ ] Complete typography variants
 
 ### Step 2: Enhance Theme Configuration
+
 - [ ] Add zIndex to theme
 - [ ] Add transitions to theme
 - [ ] Complete typography in theme
 
 ### Step 3: Advanced Features
+
 - [ ] Dark mode support
 - [ ] CSS variables option
 - [ ] Custom theme variables
@@ -173,4 +189,3 @@ Material UI v7 supports CSS theme variables
 - [Material UI Default Theme](https://mui.com/material-ui/customization/default-theme/)
 - [Material UI z-index](https://mui.com/material-ui/customization/z-index/)
 - [Material UI Transitions](https://mui.com/material-ui/customization/transitions/)
-
