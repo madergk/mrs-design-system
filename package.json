@@ -16,13 +16,15 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/mrs-design-system"
+    "url": "https://github.com/madergk/mrs-design-system.git"
   },
   "bugs": {
-    "url": "https://github.com/your-org/mrs-design-system/issues"
+    "url": "https://github.com/madergk/mrs-design-system/issues"
   },
-  "homepage": "https://github.com/your-org/mrs-design-system#readme",
-  "private": true,
+  "homepage": "https://github.com/madergk/mrs-design-system#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -60,7 +62,11 @@
     "setup-hooks": "node scripts/setup-hooks.js",
     "chromatic": "chromatic --project-token=chpt_aec6e164301ece6",
     "sync:figma-colors": "node scripts/sync-figma-colors.js",
-    "tokens:transform": "node scripts/transform-tokens.js"
+    "tokens:transform": "node scripts/transform-tokens.js",
+    "tokens:verify": "node scripts/verify-tokens.js",
+    "prepublishOnly": "npm run build && npm run test:run && npm run lint",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
