@@ -33,6 +33,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@madergk/bio-ds/dist/bio-ds/styles.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -93,6 +94,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@madergk/bio-ds/dist/bio-ds/styles.css",
               "src/styles.scss"
             ],
             "scripts": []
