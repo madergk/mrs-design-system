@@ -7,3 +7,4 @@
 export { theme, type AppTheme } from './theme';
 export * from './designTokens';
 export * from './colorUtils';
+export * from './colorVariables';

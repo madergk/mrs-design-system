@@ -58,7 +58,8 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,json,css,md}\"",
     "type-check": "tsc --noEmit",
     "setup-hooks": "node scripts/setup-hooks.js",
-    "chromatic": "chromatic --project-token=chpt_aec6e164301ece6"
+    "chromatic": "chromatic --project-token=chpt_aec6e164301ece6",
+    "sync:figma-colors": "node scripts/sync-figma-colors.js"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
