@@ -10,7 +10,6 @@ import { Box } from '@mui/material';
 import { Paper } from '../Paper';
 import { IconButton } from '../IconButton';
 import { Icon } from '../Icon';
-import { Avatar } from '../Avatar';
 import { Typography } from '../Typography';
 import {
   semanticColors,
@@ -123,7 +122,7 @@ interface AccountStackProps {
 const AccountStack: React.FC<AccountStackProps> = ({
   userName = 'Pablo Salved',
   accountType = 'Cuenta principal',
-  userInitials = 'P',
+  userInitials: _userInitials = 'P',
 }) => {
   return (
     <Box
@@ -134,7 +133,6 @@ const AccountStack: React.FC<AccountStackProps> = ({
         padding: '4px',
       }}
     >
-      <Avatar variant="circular" size="40px" content="text" initials={userInitials} />
       <Box
         sx={{
           display: 'flex',
