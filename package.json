@@ -1,6 +1,6 @@
 {
   "name": "mrs-design-system",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MRS Design System - A comprehensive React design system built on Material UI with design tokens extracted from Figma",
   "keywords": [
     "design-system",
@@ -65,7 +65,7 @@
     "tokens:transform": "node scripts/transform-tokens.js",
     "tokens:verify": "node scripts/verify-tokens.js",
     "prepublishOnly": "npm run build && npm run test:run && npm run lint",
-    "version": "npm run build && git add -A dist",
+    "version": "npm run build",
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
