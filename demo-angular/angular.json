@@ -33,7 +33,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/@madergk/bio-ds/dist/bio-ds/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -94,7 +94,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/@madergk/bio-ds/dist/bio-ds/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": []
