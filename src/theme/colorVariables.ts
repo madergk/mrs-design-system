@@ -4,7 +4,7 @@
  * Este archivo es generado automáticamente desde Tokens Studio (Figma)
  * NO editar manualmente - los cambios se perderán al sincronizar
  *
- * Última sincronización: 2025-12-03T07:13:36.526Z
+ * Última sincronización: 2025-12-03T08:21:36.500Z
  * Fuente: tokens/tokens.json
  */
 
