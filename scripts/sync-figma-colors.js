@@ -11,13 +11,47 @@
  *   npm run sync:figma-colors
  */
 
-import { writeFileSync, readFileSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// ============================================================================
+// CARGAR VARIABLES DE ENTORNO DESDE .env
+// ============================================================================
+
+/**
+ * Carga variables de entorno desde archivo .env
+ */
+function loadEnvFile() {
+  const envPath = join(process.cwd(), '.env');
+  
+  if (existsSync(envPath)) {
+    const envContent = readFileSync(envPath, 'utf-8');
+    const lines = envContent.split('\n');
+    
+    for (const line of lines) {
+      const trimmedLine = line.trim();
+      // Ignorar comentarios y líneas vacías
+      if (trimmedLine && !trimmedLine.startsWith('#')) {
+        const [key, ...valueParts] = trimmedLine.split('=');
+        if (key && valueParts.length > 0) {
+          const value = valueParts.join('=').trim();
+          // No sobrescribir si ya existe en process.env
+          if (!process.env[key.trim()]) {
+            process.env[key.trim()] = value;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Cargar .env al inicio
+loadEnvFile();
 
 // ============================================================================
 // CONFIGURACIÓN
@@ -31,10 +65,10 @@ if (!FIGMA_ACCESS_TOKEN) {
   console.log('\n💡 Cómo obtener el token:');
   console.log('   1. Ve a Figma → Settings → Account');
   console.log('   2. Personal Access Tokens → Create new token');
-  console.log('   3. Copia el token y configúralo como variable de entorno:');
-  console.log('      export FIGMA_ACCESS_TOKEN="tu-token-aqui"');
-  console.log('\n   O ejecuta:');
-  console.log('      FIGMA_ACCESS_TOKEN="tu-token" npm run sync:figma-colors');
+  console.log('   3. IMPORTANTE: Selecciona el scope "file_variables:read"');
+  console.log('   4. Copia el token y guárdalo en el archivo .env:');
+  console.log('      FIGMA_ACCESS_TOKEN=tu-token-aqui');
+  console.log('\n   El archivo .env se carga automáticamente.');
   process.exit(1);
 }
 
@@ -43,9 +77,40 @@ if (!FIGMA_ACCESS_TOKEN) {
 // ============================================================================
 
 /**
+ * Verifica el plan y permisos del usuario
+ */
+async function checkUserPlan() {
+  const url = 'https://api.figma.com/v1/me';
+  
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'X-Figma-Token': FIGMA_ACCESS_TOKEN,
+      },
+    });
+
+    if (response.ok) {
+      const user = await response.json();
+      return user;
+    }
+  } catch (error) {
+    console.warn('⚠️  No se pudo verificar el plan del usuario');
+  }
+  return null;
+}
+
+/**
  * Obtiene todas las variables de un archivo de Figma
+ * NOTA: Requiere plan Enterprise de Figma
  */
 async function fetchFigmaVariables() {
+  // Primero verificar el plan
+  const user = await checkUserPlan();
+  if (user) {
+    console.log(`👤 Usuario: ${user.email || user.handle || 'Desconocido'}`);
+  }
+
+  // Intentar endpoint de variables (requiere Enterprise)
   const url = `https://api.figma.com/v1/files/${FIGMA_FILE_KEY}/variables/local`;
   
   const response = await fetch(url, {
@@ -55,8 +120,29 @@ async function fetchFigmaVariables() {
   });
 
   if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`Error al obtener variables de Figma: ${response.status} - ${error}`);
+    const errorText = await response.text();
+    let errorMessage = `Error ${response.status}`;
+    
+    try {
+      const error = JSON.parse(errorText);
+      errorMessage = error.message || errorMessage;
+      
+      // Mensaje más claro sobre el plan Enterprise
+      if (response.status === 403 && errorMessage.includes('file_variables:read')) {
+        errorMessage += '\n\n⚠️  IMPORTANTE: La API de Variables requiere:';
+        errorMessage += '\n   1. Plan Enterprise de Figma';
+        errorMessage += '\n   2. Ser miembro completo (no invitado) de la organización';
+        errorMessage += '\n   3. Token con scope file_variables:read';
+        errorMessage += '\n\n💡 Alternativas:';
+        errorMessage += '\n   - Usar Tokens Studio plugin (no requiere Enterprise)';
+        errorMessage += '\n   - Exportar variables manualmente desde Figma';
+        errorMessage += '\n   - Usar Figma Token Exporter plugin';
+      }
+    } catch (e) {
+      errorMessage = errorText;
+    }
+    
+    throw new Error(`Error al obtener variables de Figma: ${errorMessage}`);
   }
 
   return response.json();

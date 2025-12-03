@@ -59,7 +59,8 @@
     "type-check": "tsc --noEmit",
     "setup-hooks": "node scripts/setup-hooks.js",
     "chromatic": "chromatic --project-token=chpt_aec6e164301ece6",
-    "sync:figma-colors": "node scripts/sync-figma-colors.js"
+    "sync:figma-colors": "node scripts/sync-figma-colors.js",
+    "tokens:transform": "node scripts/transform-tokens.js"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",

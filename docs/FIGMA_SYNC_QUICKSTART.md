@@ -2,25 +2,63 @@
 
 ## ✅ Respuesta Rápida
 
-**Sí, puedes sincronizar `colorVariables.ts` con Figma.** He creado dos opciones para ti:
+**Sí, puedes sincronizar `colorVariables.ts` con Figma.** Sin embargo, hay una limitación importante:
 
-1. **Script con Figma API** (ya configurado) - Para sincronización programática
-2. **Guía completa** con todas las opciones disponibles
+⚠️ **IMPORTANTE**: La API REST de Variables de Figma requiere **plan Enterprise**. Si no tienes Enterprise, usa las alternativas recomendadas.
 
-## 🚀 Opción 1: Script con Figma API (Recomendado para empezar)
+### Opciones Disponibles:
+
+1. **Tokens Studio plugin** ⭐ (Recomendado - NO requiere Enterprise)
+2. **Figma Token Exporter plugin** (NO requiere Enterprise)
+3. **Script con Figma API** (Requiere plan Enterprise)
+
+## 🚀 Opción 1: Tokens Studio (Recomendado - NO requiere Enterprise)
+
+### ¿Por qué Tokens Studio?
+- ✅ **NO requiere plan Enterprise**
+- ✅ Sincronización automática bidireccional
+- ✅ Integración con GitHub
+- ✅ Gratuito y open source
 
 ### Configuración Rápida
+
+1. **Instalar plugin en Figma:**
+   - Abre Figma
+   - Plugins → Browse plugins
+   - Buscar "Tokens Studio for Figma"
+   - Instalar
+
+2. **Configurar GitHub Sync:**
+   - En el plugin → Settings
+   - Conectar con tu repositorio GitHub
+   - Configurar ruta: `src/theme/tokens.json`
+
+3. **Sincronizar:**
+   - El plugin exportará automáticamente a GitHub
+   - Necesitarás un script para convertir JSON → `colorVariables.ts`
+
+---
+
+## 🔧 Opción 2: Script con Figma API (Requiere Enterprise)
+
+⚠️ **Esta opción solo funciona con plan Enterprise de Figma**
+
+Si no ves el scope `file_variables:read` al crear el token, tu cuenta no tiene Enterprise.
+
+### Configuración (solo si tienes Enterprise):
 
 1. **Obtener Token de API de Figma:**
    ```
    1. Ve a Figma → Settings → Account
    2. Personal Access Tokens → Create new token
-   3. Copia el token
+   3. ⚠️ IMPORTANTE: Selecciona el scope "file_variables:read"
+   4. Copia el token
    ```
 
-2. **Configurar variable de entorno:**
+2. **Configurar token en archivo .env:**
    ```bash
-   export FIGMA_ACCESS_TOKEN="tu-token-aqui"
+   # El archivo .env ya está creado, solo edítalo:
+   # FIGMA_ACCESS_TOKEN=tu-token-aqui
    ```
 
 3. **Ejecutar sincronización:**
