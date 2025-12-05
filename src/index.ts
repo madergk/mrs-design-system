@@ -137,3 +137,19 @@ export type { TableCellProps } from './components/TableCell';
 
 export { TableHead } from './components/TableHead';
 export type { TableHeadProps } from './components/TableHead';
+
+export { TableRow } from './components/TableRow';
+export type { TableRowProps } from './components/TableRow';
+
+export { TableHeadRow } from './components/TableHeadRow';
+export type { TableHeadRowProps } from './components/TableHeadRow';
+
+export { TableFooter } from './components/TableFooter';
+export type { TableFooterProps } from './components/TableFooter';
+
+export { Table } from './components/Table';
+export type { TableProps, TableRowData } from './components/Table';
+
+// Feedback & Overlay
+export { Alert } from './components/Alert';
+export type { AlertProps } from './components/Alert';

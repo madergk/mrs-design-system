@@ -150,17 +150,17 @@ export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
             <Logo />
           </Box>
 
-          {/* Right Side: Account Stack (includes notifications) */}
-          {showUserAccount && (
+          {/* Right Side: Notifications and/or Account Stack */}
+          {(showNotifications || showUserAccount) && (
             <AccountStack
               showNotifications={showNotifications}
-              onNotificationClick={onNotificationClick}
+              {...(onNotificationClick && { onNotificationClick })}
               showUserAccount={showUserAccount}
               userName={userName}
               accountType={accountType}
               userInitials={userInitials}
-              userAvatarSrc={userAvatarSrc}
-              userAvatarAlt={userAvatarAlt}
+              {...(userAvatarSrc && { userAvatarSrc })}
+              {...(userAvatarAlt && { userAvatarAlt })}
             />
           )}
         </Box>
