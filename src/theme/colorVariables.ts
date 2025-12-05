@@ -4,7 +4,7 @@
  * Este archivo es generado automáticamente desde Tokens Studio (Figma)
  * NO editar manualmente - los cambios se perderán al sincronizar
  *
- * Última sincronización: 2025-12-03T07:13:36.526Z
+ * Última sincronización: 2025-12-03T08:32:47.029Z
  * Fuente: tokens/tokens.json
  */
 
@@ -17,6 +17,10 @@ export const primitiveColors = {
   teal: '#009999',
   black: '#000000',
   white: '#ffffff',
+  // Preservado del archivo original (no está en Tokens Studio)
+  deepPurple: {
+    500: '#673ab7',
+  },
 } as const;
 
 // ============================================================================

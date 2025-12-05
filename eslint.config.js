@@ -20,6 +20,7 @@ export default [
       'vite.config.ts',
       'vitest.config.ts',
       '.storybook/**',
+      'scripts/**', // Scripts de desarrollo no se publican
     ],
   },
   {

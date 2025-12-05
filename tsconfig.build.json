@@ -8,6 +8,6 @@
     "outDir": "./dist"
   },
   "include": ["src"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/**/*.stories.tsx", "node_modules"]
+  "exclude": ["node_modules", "src/**/*.stories.tsx", "src/**/*.stories.ts"]
 }
 
