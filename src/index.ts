@@ -118,6 +118,12 @@ export type { AccordionGroupProps, AccordionItem } from './components/AccordionG
 export { AppBar } from './components/AppBar';
 export type { AppBarProps } from './components/AppBar';
 
+export { AccountStack } from './components/AccountStack';
+export type { AccountStackProps } from './components/AccountStack';
+
+export { Logo } from './components/Logo';
+export type { LogoProps } from './components/Logo';
+
 // Icons & Actions
 export { Icon } from './components/Icon';
 export type { IconProps, IconName } from './components/Icon';
