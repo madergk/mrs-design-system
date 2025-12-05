@@ -6,16 +6,14 @@
  */
 
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { Paper } from '../Paper';
 import { IconButton } from '../IconButton';
 import { Icon } from '../Icon';
-import { Typography } from '../Typography';
+import { Logo } from '../Logo';
+import { AccountStack } from '../AccountStack';
 import {
   semanticColors,
-  typographyVariants,
-  primitiveSpacing,
-  primitiveColors,
 } from '../../theme/designTokens';
 
 export interface AppBarProps {
@@ -58,121 +56,23 @@ export interface AppBarProps {
    */
   userInitials?: string;
   /**
-   * Custom width for the AppBar
-   * @default 600
+   * User avatar image source
    */
-  width?: number;
+  userAvatarSrc?: string;
   /**
-   * Whether this is a small screen variant
-   * @default false
+   * User avatar alt text
    */
-  smallScreen?: boolean;
+  userAvatarAlt?: string;
 }
 
-/**
- * Logo Component
- * Displays the MiREDSALUD logo with green/teal styling
- */
-const Logo: React.FC = () => {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        height: '24px',
-        width: '172px',
-      }}
-    >
-      <Typography
-        sx={{
-          fontFamily: typographyVariants.h6.fontFamily,
-          fontSize: `${typographyVariants.h6.fontSize}px`,
-          fontWeight: typographyVariants.h6.fontWeight,
-          lineHeight: typographyVariants.h6.lineHeight,
-          color: semanticColors.secondary.main, // Bright green for "Mi"
-        }}
-      >
-        Mi
-      </Typography>
-      <Typography
-        sx={{
-          fontFamily: typographyVariants.h6.fontFamily,
-          fontSize: `${typographyVariants.h6.fontSize}px`,
-          fontWeight: typographyVariants.h6.fontWeight,
-          lineHeight: typographyVariants.h6.lineHeight,
-          color: primitiveColors.teal, // Teal for "REDSALUD"
-        }}
-      >
-        REDSALUD
-      </Typography>
-    </Box>
-  );
-};
-
-/**
- * AccountStack Component
- * Displays user avatar with name and account type
- */
-interface AccountStackProps {
-  userName?: string;
-  accountType?: string;
-  userInitials?: string;
-}
-
-const AccountStack: React.FC<AccountStackProps> = ({
-  userName = 'Pablo Salved',
-  accountType = 'Cuenta principal',
-  userInitials: _userInitials = 'P',
-}) => {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: primitiveSpacing[3], // 24px
-        padding: '4px',
-      }}
-    >
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-        }}
-      >
-        <Typography
-          sx={{
-            fontFamily: typographyVariants.subtitle2.fontFamily,
-            fontSize: `${typographyVariants.subtitle2.fontSize}px`,
-            fontWeight: typographyVariants.subtitle2.fontWeight,
-            lineHeight: typographyVariants.subtitle2.lineHeight,
-            color: semanticColors.text.primary,
-            letterSpacing: '0.15px',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {userName}
-        </Typography>
-        <Typography
-          sx={{
-            fontFamily: typographyVariants.caption.fontFamily,
-            fontSize: `${typographyVariants.caption.fontSize}px`,
-            fontWeight: typographyVariants.caption.fontWeight,
-            lineHeight: typographyVariants.caption.lineHeight,
-            color: semanticColors.text.secondary,
-            letterSpacing: '0.4px',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {accountType}
-        </Typography>
-      </Box>
-    </Box>
-  );
-};
 
 /**
  * AppBar component
+ *
+ * A Material UI AppBar wrapped in a Paper component.
+ * Displays menu icon, logo, notifications, and user account information.
+ *
+ * Based on Figma design: node-id=11501:186167
  *
  * @example
  * ```tsx
@@ -192,113 +92,79 @@ export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
       showNotifications = true,
       onNotificationClick,
       showUserAccount = true,
-      userName = 'Pablo Salved',
+      userName = 'Paula Sapúlveda',
       accountType = 'Cuenta principal',
       userInitials = 'P',
-      width = 600,
-      smallScreen: _smallScreen = false,
+      userAvatarSrc,
+      userAvatarAlt,
       ...props
     },
     ref
   ) => {
+    const theme = useTheme();
+    
     return (
-      <Box
+      <Paper
         ref={ref}
+        variant="Elevation"
+        elevation="1"
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          width: width,
-          backgroundColor: semanticColors.background.default,
+          width: '100%',
+          backgroundColor: semanticColors.primary.contrastText, // White background
         }}
         {...props}
       >
-        <Paper
-          variant="Elevation"
-          elevation="1"
+        <Box
           sx={{
-            width: '100%',
-            backgroundColor: semanticColors.primary.contrastText, // White background
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            paddingLeft: theme.spacing(3), // 24px
+            paddingRight: theme.spacing(3), // 24px
+            paddingY: 0,
+            minHeight: 64,
           }}
         >
+          {/* Left Side: Menu + Logo */}
           <Box
             sx={{
               display: 'flex',
               alignItems: 'center',
-              paddingLeft: primitiveSpacing[1], // 8px
-              paddingRight: primitiveSpacing[3], // 24px
-              paddingY: 0,
+              gap: theme.spacing(2), // 16px
               minHeight: 64,
             }}
           >
-            {/* Left Side: Menu + Logo */}
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: primitiveSpacing[2], // 16px
-                flex: '1 1 0',
-                minWidth: 0,
-                minHeight: 64,
-              }}
-            >
-              {showMenu && (
-                <IconButton
-                  size="medium"
-                  color="default"
-                  onClick={onMenuClick}
-                  sx={{
-                    padding: primitiveSpacing[1], // 8px
-                    borderRadius: '999px',
-                  }}
-                >
-                  <Icon name="MenuRounded" />
-                </IconButton>
-              )}
-              <Logo />
-            </Box>
-
-            {/* Center/Right: Notifications */}
-            {showNotifications && (
-              <Box
+            {showMenu && (
+              <IconButton
+                size="medium"
+                color="default"
+                onClick={onMenuClick}
                 sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '40px',
-                  position: 'relative',
-                  marginLeft: 'auto',
-                  marginRight: showUserAccount ? primitiveSpacing[3] : 0, // 24px gap before account stack
+                  padding: theme.spacing(1), // 8px
+                  borderRadius: '999px',
                 }}
               >
-                <IconButton
-                  size="medium"
-                  color="default"
-                  onClick={onNotificationClick}
-                  badge
-                  badgeVariant="Dot"
-                  sx={{
-                    borderRadius: '999px',
-                    width: '40px',
-                    height: '40px',
-                  }}
-                >
-                  <Icon name="NotificationsNoneRounded" />
-                </IconButton>
-              </Box>
+                <Icon name="MenuRounded" />
+              </IconButton>
             )}
-
-            {/* Right: User Account */}
-            {showUserAccount && (
-              <AccountStack
-                userName={userName}
-                accountType={accountType}
-                userInitials={userInitials}
-              />
-            )}
+            <Logo />
           </Box>
-        </Paper>
-      </Box>
+
+          {/* Right Side: Account Stack (includes notifications) */}
+          {showUserAccount && (
+            <AccountStack
+              showNotifications={showNotifications}
+              onNotificationClick={onNotificationClick}
+              showUserAccount={showUserAccount}
+              userName={userName}
+              accountType={accountType}
+              userInitials={userInitials}
+              userAvatarSrc={userAvatarSrc}
+              userAvatarAlt={userAvatarAlt}
+            />
+          )}
+        </Box>
+      </Paper>
     );
   }
 );
