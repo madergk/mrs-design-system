@@ -130,3 +130,10 @@ export type { IconProps, IconName } from './components/Icon';
 
 export { IconButton } from './components/IconButton';
 export type { IconButtonProps } from './components/IconButton';
+
+// Table Components
+export { TableCell } from './components/TableCell';
+export type { TableCellProps } from './components/TableCell';
+
+export { TableHead } from './components/TableHead';
+export type { TableHeadProps } from './components/TableHead';
