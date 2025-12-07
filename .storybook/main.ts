@@ -1,10 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite';
-import { mergeConfig } from 'vite';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-// ES module compatible __dirname replacement
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import path from 'path';
 
 const config: StorybookConfig = {
   stories: [
@@ -26,14 +21,16 @@ const config: StorybookConfig = {
     defaultName: 'Documentation',
   },
   async viteFinal(config) {
-    // Merge with the project's Vite configuration
-    return mergeConfig(config, {
+    return {
+      ...config,
       resolve: {
+        ...config.resolve,
         alias: {
-          '@': resolve(__dirname, '../src'),
+          ...config.resolve?.alias,
+          '@': path.resolve(__dirname, '../src'),
         },
       },
-    });
+    };
   },
 };
 
