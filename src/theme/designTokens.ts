@@ -2,10 +2,11 @@
  * Design Tokens
  *
  * Este archivo es generado automáticamente desde Tokens Studio (Figma)
- * NO editar manualmente - los cambios se perderán al sincronizar
+ * ⚠️ IMPORTANTE: Solo las secciones de COLORES se actualizan automáticamente
+ * Los demás tokens (typography, spacing, radius, etc.) se preservan del archivo original
  *
- * Última sincronización: 2025-12-03T07:13:36.525Z
- * Fuente: tokens/tokens.json
+ * Última sincronización: 2025-12-03T08:32:47.027Z
+ * Fuente colores: tokens/tokens.json (Tokens Studio)
  *
  * NOTA: Este archivo incluye exports adicionales requeridos por el código
  * que no están presentes en tokens.json. Estos deben ser agregados a Tokens Studio.
@@ -15,9 +16,90 @@
 // PRIMITIVE TOKENS
 // ============================================================================
 
+/**
+ * Primitive Color Tokens
+ * Base color values from Tokens Studio (Figma)
+ * These are referenced by semantic color tokens
+ */
 export const primitiveColors = {
   verones: '#00686f',
   white: '#ffffff',
+  // Preservado del archivo original (no está en Tokens Studio)
+  deepPurple: {
+    500: '#673ab7',
+  },
+} as const;
+
+export const primitiveTypography = {
+  fontFamily: {
+    brand: 'Nunito',
+    base: 'Nunito',
+  },
+  fontSize: {
+    '0.625rem': 10,
+    '0.75rem': 12,
+    '0.8125rem': 13,
+    '0.875rem': 14,
+    '1rem': 16,
+    '1.25rem': 20,
+    '1.5rem': 24,
+    '2.125rem': 34, // h4
+    '3rem': 48, // h3
+    '3.75rem': 60, // h2
+    '6rem': 96, // h1
+  },
+  fontWeight: {
+    regular: 400,
+    medium: 500,
+    semiBold: 600,
+    bold: 700,
+  },
+} as const;
+
+export const primitiveSpacing = {
+  1: 8,
+  2: 16,
+  3: 24,
+  8: 64,
+} as const;
+
+export const primitiveRadius = {
+  none: 0,
+  md: 12,
+  rounded: 999,
+} as const;
+
+export const primitiveBreakpoints = {
+  xs: 444,
+  sm: 600,
+} as const;
+
+export const primitiveZIndex = {
+  mobileStepper: 1000,
+  speedDial: 1050,
+  appBar: 1100,
+  drawer: 1200,
+  modal: 1300,
+  snackbar: 1400,
+  tooltip: 1500,
+} as const;
+
+export const primitiveTransitions = {
+  duration: {
+    shortest: 150,
+    shorter: 200,
+    short: 250,
+    standard: 300,
+    complex: 375,
+    enteringScreen: 225,
+    leavingScreen: 195,
+  },
+  easing: {
+    easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
+    easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
+    sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
+  },
 } as const;
 
 export const primitiveTypography = {
@@ -95,11 +177,22 @@ export const primitiveTransitions = {
 // SEMANTIC COLOR TOKENS
 // ============================================================================
 
+/**
+ * Semantic Color Tokens
+ * ⚠️ IMPORTANTE: Solo primary, secondary, error se actualizan desde Tokens Studio
+ * Las demás propiedades (warning, info, success, background, text, action, divider)
+ * se preservan del archivo original
+ */
 export const semanticColors = {
+  // Actualizados desde Tokens Studio
   primary: {
-    main: '#00686f',
+    main: primitiveColors.verones, // #00686f - aliased from material/colors/verones
     dark: '#004e53',
     contrastText: '#ffffff',
+    states: {
+      selected: '#00999929', // rgba with opacity
+      hover: '#0099991f', // rgba with opacity
+    },
   },
   secondary: {
     main: '#99cc00',
@@ -109,6 +202,7 @@ export const semanticColors = {
     main: '#ab1a1a',
     contrastText: '#ffffff',
   },
+<<<<<<< HEAD
   warning: {
     main: '#ed6c02',
     contrastText: '#ffffff',
@@ -214,11 +308,151 @@ export const typographyVariants = {
       fontFamily: 'Nunito',
       fontSize: 0.8125,
       fontWeight: 400,
+=======
+  // Preservados del archivo original (no están en Tokens Studio)
+  warning: {
+    main: '#dfa00a',
+  },
+  info: {
+    main: '#2481b8',
+    contrastText: '#ffffff',
+  },
+  success: {
+    // Note: Success color not explicitly defined in Figma variables
+    // Using Material Design default or can be added
+    main: '#2e7d32',
+    contrastText: '#ffffff',
+  },
+  background: {
+    default: '#ffffff',
+    paper: {
+      elevation0: '#ffffff',
+      elevation1: '#ffffff',
+    },
+  },
+  text: {
+    primary: '#000000de', // rgba with opacity
+    secondary: '#00000099', // rgba with opacity
+  },
+  action: {
+    active: '#0000008f', // rgba with opacity
+    selected: '#0000001f', // rgba with opacity
+  },
+  divider: '#0000001f', // rgba with opacity
+} as const;
+
+// ============================================================================
+// TYPOGRAPHY TOKENS
+// ============================================================================
+
+export const typographyVariants = {
+  // Base typography variants
+  caption: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['0.75rem'],
+    fontWeight: primitiveTypography.fontWeight.regular,
+    lineHeight: 1.2,
+  },
+  body1: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['1rem'],
+    fontWeight: primitiveTypography.fontWeight.regular,
+    lineHeight: 1.5,
+  },
+  body2: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['0.875rem'],
+    fontWeight: primitiveTypography.fontWeight.regular,
+    lineHeight: 1.429,
+  },
+  h1: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['6rem'], // 96px from Figma
+    fontWeight: primitiveTypography.fontWeight.semiBold,
+    lineHeight: 1.167,
+  },
+  h2: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['3.75rem'], // 60px from Figma
+    fontWeight: primitiveTypography.fontWeight.semiBold,
+    lineHeight: 1.2,
+  },
+  h3: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['3rem'], // 48px from Figma
+    fontWeight: primitiveTypography.fontWeight.semiBold,
+    lineHeight: 1.167,
+  },
+  h4: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['2.125rem'], // 34px from Figma
+    fontWeight: primitiveTypography.fontWeight.semiBold,
+    lineHeight: 1.235,
+  },
+  h5: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['1.5rem'], // 24px from Figma
+    fontWeight: primitiveTypography.fontWeight.semiBold,
+    lineHeight: 1.334,
+  },
+  h6: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['1.25rem'], // 20px from Figma
+    fontWeight: primitiveTypography.fontWeight.semiBold,
+    lineHeight: 1.6,
+  },
+  subtitle1: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['1rem'], // 16px from Figma
+    fontWeight: primitiveTypography.fontWeight.regular,
+    lineHeight: 1.75,
+  },
+  subtitle2: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['0.875rem'], // 14px from Figma
+    fontWeight: primitiveTypography.fontWeight.medium,
+    lineHeight: 1.57,
+  },
+  overline: {
+    fontFamily: primitiveTypography.fontFamily.base,
+    fontSize: primitiveTypography.fontSize['0.75rem'], // 12px from Figma
+    fontWeight: primitiveTypography.fontWeight.bold, // 700 from Figma
+    lineHeight: 2.66,
+    textTransform: 'uppercase',
+  },
+  // Component-specific typography
+  button: {
+    small: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.8125rem'],
+      fontWeight: primitiveTypography.fontWeight.semiBold,
+      lineHeight: 24,
+    },
+    medium: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.875rem'],
+      fontWeight: primitiveTypography.fontWeight.semiBold,
+      lineHeight: 24,
+    },
+    large: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['1rem'],
+      fontWeight: primitiveTypography.fontWeight.semiBold,
+      lineHeight: 24,
+    },
+  },
+  chip: {
+    label: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.8125rem'],
+      fontWeight: primitiveTypography.fontWeight.regular,
+>>>>>>> 432a1d4175e3cf88dd4fd6e7bef1224002c71eba
       lineHeight: 18,
     },
   },
   input: {
     label: {
+<<<<<<< HEAD
       fontFamily: 'Nunito',
       fontSize: 0.75,
       fontWeight: 400,
@@ -234,19 +468,43 @@ export const typographyVariants = {
       fontFamily: 'Nunito',
       fontSize: 0.75,
       fontWeight: 400,
+=======
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.75rem'],
+      fontWeight: primitiveTypography.fontWeight.regular,
+      lineHeight: 12,
+    },
+    value: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['1rem'],
+      fontWeight: primitiveTypography.fontWeight.regular,
+      lineHeight: 24,
+    },
+    helper: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.75rem'],
+      fontWeight: primitiveTypography.fontWeight.regular,
+>>>>>>> 432a1d4175e3cf88dd4fd6e7bef1224002c71eba
       lineHeight: 1.66,
     },
   },
   table: {
     header: {
+<<<<<<< HEAD
       fontFamily: 'Nunito',
       fontSize: 14,
       fontWeight: 500,
+=======
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.875rem'],
+      fontWeight: primitiveTypography.fontWeight.medium,
+>>>>>>> 432a1d4175e3cf88dd4fd6e7bef1224002c71eba
       lineHeight: 24,
     },
   },
   alert: {
     title: {
+<<<<<<< HEAD
       fontFamily: 'Nunito',
       fontSize: 16,
       fontWeight: 600,
@@ -277,21 +535,73 @@ export const typographyVariants = {
       fontSize: 16,
       fontWeight: 500,
       lineHeight: 22,
+=======
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['1rem'],
+      fontWeight: primitiveTypography.fontWeight.medium,
+      lineHeight: 1.5,
+    },
+    description: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.875rem'],
+      fontWeight: primitiveTypography.fontWeight.regular,
+      lineHeight: 1.429,
+    },
+  },
+  avatar: {
+    initialsLg: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['1.25rem'],
+      fontWeight: primitiveTypography.fontWeight.semiBold,
+      lineHeight: 20,
+    },
+    initialsMd: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.75rem'],
+      fontWeight: primitiveTypography.fontWeight.regular,
+      lineHeight: 12,
+    },
+    initialsSm: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.625rem'],
+      fontWeight: primitiveTypography.fontWeight.regular,
+      lineHeight: 10,
+    },
+  },
+  tooltip: {
+    label: {
+      fontFamily: primitiveTypography.fontFamily.base,
+      fontSize: primitiveTypography.fontSize['0.625rem'], // 10px
+      fontWeight: primitiveTypography.fontWeight.medium, // 500
+      lineHeight: 14,
+>>>>>>> 432a1d4175e3cf88dd4fd6e7bef1224002c71eba
     },
   },
 } as const;
 
 // ============================================================================
+<<<<<<< HEAD
 // COMPONENT TOKENS
 // ============================================================================
 
 export const componentTokens = {
+=======
+// COMPONENT-SPECIFIC TOKENS
+// ============================================================================
+
+export const componentTokens = {
+  rating: {
+    activeFill: '#ffb400',
+    enabledBorder: '#0000003b', // rgba with opacity
+  },
+>>>>>>> 432a1d4175e3cf88dd4fd6e7bef1224002c71eba
   chip: {
     defaultCloseFill: '#000000',
     defaultEnabledBorder: '#bdbdbd',
   },
   input: {
     standard: {
+<<<<<<< HEAD
       enabledBorder: '#0000006b',
     },
     filled: {
@@ -311,6 +621,17 @@ export const componentTokens = {
     },
     connector: '#bdbdbd', // Using default border color
   },
+=======
+      enabledBorder: '#0000006b', // rgba with opacity
+    },
+    filled: {
+      enabledFill: '#0000000f', // rgba with opacity
+    },
+    outlined: {
+      enabledBorder: '#0000003b', // rgba with opacity
+    },
+  },
+>>>>>>> 432a1d4175e3cf88dd4fd6e7bef1224002c71eba
   alert: {
     error: {
       color: '#5f2120',
@@ -326,11 +647,22 @@ export const componentTokens = {
     },
     warning: {
       color: '#3e2410',
+<<<<<<< HEAD
       background: '#fff4e5',
+=======
+      // background not explicitly defined in Figma
+    },
+  },
+  stepper: {
+    connector: '#9e9e9d',
+    completedStep: {
+      backgroundColor: '#00796b', // Teal color for completed steps
+>>>>>>> 432a1d4175e3cf88dd4fd6e7bef1224002c71eba
     },
   },
 } as const;
 
+<<<<<<< HEAD
 // ============================================================================
 // LIBRARY TOKENS
 // ============================================================================
@@ -340,6 +672,13 @@ export const libraryTokens = {} as const;
 // ============================================================================
 // TOKEN CONNECTIONS
 // ============================================================================
+=======
+export const libraryTokens = {
+  colorHighlight: '#9747FF',
+  fillHighlight: '#9747FF',
+  clickableLayer: '#000000',
+} as const;
+>>>>>>> 432a1d4175e3cf88dd4fd6e7bef1224002c71eba
 
 export const tokenConnections = {
   primary: {
@@ -363,7 +702,16 @@ export type PrimitiveBreakpoints = typeof primitiveBreakpoints;
 export type PrimitiveZIndex = typeof primitiveZIndex;
 export type PrimitiveTransitions = typeof primitiveTransitions;
 export type SemanticColors = typeof semanticColors;
+<<<<<<< HEAD
 export type TypographyVariants = typeof typographyVariants;
 export type ComponentTokens = typeof componentTokens;
 export type LibraryTokens = typeof libraryTokens;
 export type TokenConnections = typeof tokenConnections;
+=======
+
+export type TypographyVariants = typeof typographyVariants;
+export type ComponentTokens = typeof componentTokens;
+export type LibraryTokens = typeof libraryTokens;
+export type PrimitiveZIndex = typeof primitiveZIndex;
+export type PrimitiveTransitions = typeof primitiveTransitions;
+>>>>>>> 432a1d4175e3cf88dd4fd6e7bef1224002c71eba

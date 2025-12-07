@@ -81,16 +81,6 @@ export type { TypographyProps } from './components/Typography';
 export { Paper } from './components/Paper';
 export type { PaperProps } from './components/Paper';
 
-export { Card, CardMedia, CardHeader, CardContent, CardActions } from './components/Card';
-export type {
-  CardProps,
-  CardDataLine,
-  CardMediaProps,
-  CardHeaderProps,
-  CardContentProps,
-  CardActionsProps,
-} from './components/Card';
-
 export { Divider } from './components/Divider';
 export type { DividerProps } from './components/Divider';
 
@@ -101,17 +91,8 @@ export { ListItem } from './components/ListItem';
 export type { ListItemProps } from './components/ListItem';
 
 // Data Display
-export { Avatar } from './components/Avatar';
-export type { AvatarProps } from './components/Avatar';
-
 export { Badge } from './components/Badge';
 export type { BadgeProps } from './components/Badge';
-
-export { Chip } from './components/Chip';
-export type { ChipProps } from './components/Chip';
-
-export { Tag } from './components/Tag';
-export type { TagProps } from './components/Tag';
 
 // Feedback & Overlay
 export { Tooltip } from './components/Tooltip';
