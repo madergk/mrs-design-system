@@ -15,6 +15,7 @@ import { Icon } from '../Icon';
 import { IconButton } from '../IconButton';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
+import { primitiveRadius } from '@/theme';
 
 export interface AlertProps {
   /**
@@ -231,7 +232,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           alignItems: 'flex-start',
           backgroundColor: colors.backgroundColor,
           border: colors.borderColor ? `1px solid ${colors.borderColor}` : 'none',
-          borderRadius: theme.shape.borderRadius || 1, // 12px
+          borderRadius: primitiveRadius.md,
           padding: theme.spacing(1), // 8px
           minWidth: 320,
           maxWidth: 640,
