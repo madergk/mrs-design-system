@@ -9,10 +9,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { Typography } from '../Typography';
-import {
-  semanticColors,
-  typographyVariants,
-} from '../../theme/designTokens';
+import { semanticColors, typographyVariants } from '../../theme/designTokens';
 
 export interface LogoProps {
   /**
@@ -78,4 +75,3 @@ export const Logo = React.forwardRef<HTMLDivElement, LogoProps>(
 Logo.displayName = 'Logo';
 
 export default Logo;
-

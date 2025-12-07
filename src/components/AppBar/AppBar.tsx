@@ -12,9 +12,7 @@ import { IconButton } from '../IconButton';
 import { Icon } from '../Icon';
 import { Logo } from '../Logo';
 import { AccountStack } from '../AccountStack';
-import {
-  semanticColors,
-} from '../../theme/designTokens';
+import { semanticColors } from '../../theme/designTokens';
 
 export interface AppBarProps {
   /**
@@ -65,7 +63,6 @@ export interface AppBarProps {
   userAvatarAlt?: string;
 }
 
-
 /**
  * AppBar component
  *
@@ -102,7 +99,7 @@ export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
     ref
   ) => {
     const theme = useTheme();
-    
+
     return (
       <Paper
         ref={ref}

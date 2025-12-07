@@ -120,13 +120,8 @@ export const DifferentConfigurations: Story = {
         <Typography variant="body2" sx={{ mb: 2, fontWeight: 'medium' }}>
           Custom User
         </Typography>
-        <AppBar
-          userName="Admin User"
-          accountType="Administrator"
-          userInitials="AU"
-        />
+        <AppBar userName="Admin User" accountType="Administrator" userInitials="AU" />
       </Box>
     </Stack>
   ),
 };
-

@@ -6,7 +6,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { Table } from './Table';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Table',
@@ -104,35 +104,21 @@ export const CompleteShowcase: Story = {
         <Typography variant="h6" sx={{ mb: 3 }}>
           Regular Table
         </Typography>
-        <Table
-          headers={sampleHeaders}
-          rows={sampleRows}
-          columns={5}
-        />
+        <Table headers={sampleHeaders} rows={sampleRows} columns={5} />
       </Box>
 
       <Box sx={{ mb: 6 }}>
         <Typography variant="h6" sx={{ mb: 3 }}>
           Small Table
         </Typography>
-        <Table
-          headers={sampleHeaders}
-          rows={sampleRows}
-          columns={5}
-          small
-        />
+        <Table headers={sampleHeaders} rows={sampleRows} columns={5} small />
       </Box>
 
       <Box sx={{ mb: 6 }}>
         <Typography variant="h6" sx={{ mb: 3 }}>
           With Checkboxes
         </Typography>
-        <Table
-          headers={sampleHeaders}
-          rows={sampleRows}
-          columns={5}
-          checkbox
-        />
+        <Table headers={sampleHeaders} rows={sampleRows} columns={5} checkbox />
       </Box>
 
       <Box sx={{ mb: 6 }}>
@@ -155,4 +141,3 @@ export const CompleteShowcase: Story = {
     layout: 'fullscreen',
   },
 };
-

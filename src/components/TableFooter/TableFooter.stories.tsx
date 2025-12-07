@@ -89,12 +89,7 @@ export const AllVariants: Story = {
           First Page (1-10 of 50)
         </Typography>
         <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 1 }}>
-          <TableFooter
-            page={0}
-            rowsPerPage={10}
-            count={50}
-            onPageChange={() => {}}
-          />
+          <TableFooter page={0} rowsPerPage={10} count={50} onPageChange={() => {}} />
         </Box>
       </Box>
       <Box>
@@ -102,12 +97,7 @@ export const AllVariants: Story = {
           Middle Page (21-30 of 50)
         </Typography>
         <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 1 }}>
-          <TableFooter
-            page={2}
-            rowsPerPage={10}
-            count={50}
-            onPageChange={() => {}}
-          />
+          <TableFooter page={2} rowsPerPage={10} count={50} onPageChange={() => {}} />
         </Box>
       </Box>
       <Box>
@@ -115,12 +105,7 @@ export const AllVariants: Story = {
           Last Page (41-50 of 50)
         </Typography>
         <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 1 }}>
-          <TableFooter
-            page={4}
-            rowsPerPage={10}
-            count={50}
-            onPageChange={() => {}}
-          />
+          <TableFooter page={4} rowsPerPage={10} count={50} onPageChange={() => {}} />
         </Box>
       </Box>
       <Box>
@@ -128,15 +113,9 @@ export const AllVariants: Story = {
           Small Dataset (1-5 of 5)
         </Typography>
         <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 1 }}>
-          <TableFooter
-            page={0}
-            rowsPerPage={10}
-            count={5}
-            onPageChange={() => {}}
-          />
+          <TableFooter page={0} rowsPerPage={10} count={5} onPageChange={() => {}} />
         </Box>
       </Box>
     </Stack>
   ),
 };
-

@@ -93,11 +93,7 @@ export const AllVariants: Story = {
           Regular Header Row
         </Typography>
         <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 1 }}>
-          <TableHeadRow
-            labels={['Name', 'Email', 'Role']}
-            columns={3}
-            divider
-          />
+          <TableHeadRow labels={['Name', 'Email', 'Role']} columns={3} divider />
         </Box>
       </Box>
       <Box>
@@ -105,12 +101,7 @@ export const AllVariants: Story = {
           Small Header Row
         </Typography>
         <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 1 }}>
-          <TableHeadRow
-            labels={['Name', 'Email', 'Role']}
-            columns={3}
-            small
-            divider
-          />
+          <TableHeadRow labels={['Name', 'Email', 'Role']} columns={3} small divider />
         </Box>
       </Box>
       <Box>
@@ -143,4 +134,3 @@ export const AllVariants: Story = {
     </Stack>
   ),
 };
-

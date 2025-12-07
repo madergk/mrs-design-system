@@ -6,7 +6,8 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { Timeline, TimelineItem } from './Timeline';
+import { Timeline } from './Timeline';
+import { TimelineItem } from './TimelineItem';
 import { Button } from '../Button';
 import { Box, Stack, Typography } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -41,21 +42,9 @@ export const Default: Story = {
   render: () => (
     <Box sx={{ width: 400 }}>
       <Timeline>
-        <TimelineItem
-          label="Item Label"
-          description="Item description"
-          dotVariant="filled"
-        />
-        <TimelineItem
-          label="Item Label"
-          description="Item description"
-          dotVariant="filled"
-        />
-        <TimelineItem
-          label="Item Label"
-          description="Item description"
-          dotVariant="filled"
-        />
+        <TimelineItem label="Item Label" description="Item description" dotVariant="filled" />
+        <TimelineItem label="Item Label" description="Item description" dotVariant="filled" />
+        <TimelineItem label="Item Label" description="Item description" dotVariant="filled" />
       </Timeline>
     </Box>
   ),
@@ -66,31 +55,18 @@ export const WithActions: Story = {
   render: () => (
     <Box sx={{ width: 400 }}>
       <Timeline>
-        <TimelineItem
-          label="Item Label"
-          description="Item description"
-          dotVariant="filled"
-        />
+        <TimelineItem label="Item Label" description="Item description" dotVariant="filled" />
         <TimelineItem
           label="Item Label"
           description="Item description"
           dotVariant="filled"
           action={
-            <Button
-              variant="text"
-              size="small"
-              color="primary"
-              endIcon={<ArrowForwardIcon />}
-            >
+            <Button variant="text" size="small" color="primary" endIcon={<ArrowForwardIcon />}>
               Button
             </Button>
           }
         />
-        <TimelineItem
-          label="Item Label"
-          description="Item description"
-          dotVariant="filled"
-        />
+        <TimelineItem label="Item Label" description="Item description" dotVariant="filled" />
       </Timeline>
     </Box>
   ),
@@ -101,46 +77,18 @@ export const DotVariants: Story = {
   render: () => (
     <Box sx={{ width: 400 }}>
       <Timeline>
-        <TimelineItem
-          label="Filled"
-          description="Default filled dot variant"
-          dotVariant="filled"
-        />
-        <TimelineItem
-          label="Outlined"
-          description="Outlined dot variant"
-          dotVariant="outlined"
-        />
-        <TimelineItem
-          label="Check"
-          description="Check icon dot variant"
-          dotVariant="check"
-        />
+        <TimelineItem label="Filled" description="Default filled dot variant" dotVariant="filled" />
+        <TimelineItem label="Outlined" description="Outlined dot variant" dotVariant="outlined" />
+        <TimelineItem label="Check" description="Check icon dot variant" dotVariant="check" />
         <TimelineItem
           label="Current"
           description="Current/active state (primary color)"
           dotVariant="current"
         />
-        <TimelineItem
-          label="Danger"
-          description="Error/danger state"
-          dotVariant="danger"
-        />
-        <TimelineItem
-          label="Warning"
-          description="Warning state"
-          dotVariant="warning"
-        />
-        <TimelineItem
-          label="Info"
-          description="Info state"
-          dotVariant="info"
-        />
-        <TimelineItem
-          label="Success"
-          description="Success state"
-          dotVariant="success"
-        />
+        <TimelineItem label="Danger" description="Error/danger state" dotVariant="danger" />
+        <TimelineItem label="Warning" description="Warning state" dotVariant="warning" />
+        <TimelineItem label="Info" description="Info state" dotVariant="info" />
+        <TimelineItem label="Success" description="Success state" dotVariant="success" />
       </Timeline>
     </Box>
   ),
@@ -176,21 +124,12 @@ export const LongContent: Story = {
           description="This item also has a longer description to show how multiple items with long content look together in the timeline."
           dotVariant="current"
           action={
-            <Button
-              variant="text"
-              size="small"
-              color="primary"
-              endIcon={<ArrowForwardIcon />}
-            >
+            <Button variant="text" size="small" color="primary" endIcon={<ArrowForwardIcon />}>
               View Details
             </Button>
           }
         />
-        <TimelineItem
-          label="Short Item"
-          description="Short description"
-          dotVariant="filled"
-        />
+        <TimelineItem label="Short Item" description="Short description" dotVariant="filled" />
       </Timeline>
     </Box>
   ),
@@ -209,12 +148,7 @@ export const ManyItems: Story = {
             dotVariant={i === 2 ? 'current' : i < 2 ? 'check' : 'filled'}
             action={
               i === 3 ? (
-                <Button
-                  variant="text"
-                  size="small"
-                  color="primary"
-                  endIcon={<ArrowForwardIcon />}
-                >
+                <Button variant="text" size="small" color="primary" endIcon={<ArrowForwardIcon />}>
                   Action
                 </Button>
               ) : undefined
@@ -244,36 +178,19 @@ export const MixedVariants: Story = {
   render: () => (
     <Box sx={{ width: 400 }}>
       <Timeline>
-        <TimelineItem
-          label="Completed"
-          description="This step is completed"
-          dotVariant="check"
-        />
+        <TimelineItem label="Completed" description="This step is completed" dotVariant="check" />
         <TimelineItem
           label="Current"
           description="This is the current step"
           dotVariant="current"
           action={
-            <Button
-              variant="text"
-              size="small"
-              color="primary"
-              endIcon={<ArrowForwardIcon />}
-            >
+            <Button variant="text" size="small" color="primary" endIcon={<ArrowForwardIcon />}>
               Continue
             </Button>
           }
         />
-        <TimelineItem
-          label="Pending"
-          description="This step is pending"
-          dotVariant="filled"
-        />
-        <TimelineItem
-          label="Warning"
-          description="This step has a warning"
-          dotVariant="warning"
-        />
+        <TimelineItem label="Pending" description="This step is pending" dotVariant="filled" />
+        <TimelineItem label="Warning" description="This step has a warning" dotVariant="warning" />
       </Timeline>
     </Box>
   ),
@@ -289,16 +206,8 @@ export const DifferentBackgrounds: Story = {
         </Typography>
         <Box sx={{ p: 3, backgroundColor: '#ffffff', borderRadius: 1 }}>
           <Timeline>
-            <TimelineItem
-              label="Item Label"
-              description="Item description"
-              dotVariant="filled"
-            />
-            <TimelineItem
-              label="Item Label"
-              description="Item description"
-              dotVariant="current"
-            />
+            <TimelineItem label="Item Label" description="Item description" dotVariant="filled" />
+            <TimelineItem label="Item Label" description="Item description" dotVariant="current" />
           </Timeline>
         </Box>
       </Box>
@@ -308,20 +217,11 @@ export const DifferentBackgrounds: Story = {
         </Typography>
         <Box sx={{ p: 3, backgroundColor: '#f5f5f5', borderRadius: 1 }}>
           <Timeline>
-            <TimelineItem
-              label="Item Label"
-              description="Item description"
-              dotVariant="filled"
-            />
-            <TimelineItem
-              label="Item Label"
-              description="Item description"
-              dotVariant="current"
-            />
+            <TimelineItem label="Item Label" description="Item description" dotVariant="filled" />
+            <TimelineItem label="Item Label" description="Item description" dotVariant="current" />
           </Timeline>
         </Box>
       </Box>
     </Stack>
   ),
 };
-

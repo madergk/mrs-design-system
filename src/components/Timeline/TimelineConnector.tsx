@@ -50,4 +50,3 @@ export const TimelineConnector = React.forwardRef<HTMLDivElement, TimelineConnec
 TimelineConnector.displayName = 'TimelineConnector';
 
 export default TimelineConnector;
-

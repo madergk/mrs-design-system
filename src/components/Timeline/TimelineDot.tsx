@@ -8,10 +8,7 @@
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import {
-  semanticColors,
-  componentTokens,
-} from '../../theme/designTokens';
+import { semanticColors, componentTokens } from '../../theme/designTokens';
 import type { TimelineDotProps } from './Timeline.types';
 
 export type { TimelineDotProps };
@@ -22,7 +19,7 @@ export type { TimelineDotProps };
 const getDotStyles = (
   variant: TimelineDotProps['variant'],
   size: number,
-  theme: ReturnType<typeof useTheme>
+  _theme: ReturnType<typeof useTheme>
 ) => {
   const baseStyles = {
     width: size,
@@ -129,4 +126,3 @@ export const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
 TimelineDot.displayName = 'TimelineDot';
 
 export default TimelineDot;
-

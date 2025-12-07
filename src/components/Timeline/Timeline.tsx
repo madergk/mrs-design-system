@@ -43,9 +43,8 @@ export const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
     const childrenWithProps = React.Children.map(childrenArray, (child, index) => {
       if (React.isValidElement(child)) {
         return React.cloneElement(child, {
-          // @ts-expect-error - TimelineItem accepts isLast prop
           isLast: index === childrenArray.length - 1,
-        });
+        } as never);
       }
       return child;
     });
@@ -72,4 +71,3 @@ export const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
 Timeline.displayName = 'Timeline';
 
 export default Timeline;
-

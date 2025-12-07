@@ -107,12 +107,9 @@ export const AllVariants: Story = {
           With Secondary Text
         </Typography>
         <Box sx={{ display: 'flex', border: '1px solid #e0e0e0' }}>
-          <TableCell secondaryText="Secondary information">
-            Main Content
-          </TableCell>
+          <TableCell secondaryText="Secondary information">Main Content</TableCell>
         </Box>
       </Box>
     </Stack>
   ),
 };
-

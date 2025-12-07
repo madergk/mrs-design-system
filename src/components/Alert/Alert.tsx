@@ -74,14 +74,14 @@ export interface AlertProps {
  *
  * @example
  * ```tsx
- * <Alert 
- *   severity="error" 
+ * <Alert
+ *   severity="error"
  *   variant="filled"
  *   title="Error Title"
  *   description="Error description"
  * />
- * <Alert 
- *   severity="success" 
+ * <Alert
+ *   severity="success"
  *   variant="outlined"
  *   title="Success"
  *   description="Operation completed"
@@ -111,7 +111,11 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     const theme = useTheme();
 
     // Get icon name based on severity
-    const getIconName = (): 'ErrorRounded' | 'WarningAmberRounded' | 'InfoRounded' | 'CheckCircleRounded' => {
+    const getIconName = ():
+      | 'ErrorRounded'
+      | 'WarningAmberRounded'
+      | 'InfoRounded'
+      | 'CheckCircleRounded' => {
       switch (severity) {
         case 'error':
           return 'ErrorRounded';
@@ -183,7 +187,10 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       }
 
       // Outlined and Standard variants
-      const variantColors: Record<'error' | 'warning' | 'info' | 'success', { light: string; dark: string }> = {
+      const variantColors: Record<
+        'error' | 'warning' | 'info' | 'success',
+        { light: string; dark: string }
+      > = {
         error: {
           light: '#fef2f4', // error/light
           dark: '#620f0f', // error/dark (for border and text)
@@ -312,12 +319,16 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
               sx={{
                 minWidth: 80,
                 marginTop: theme.spacing(0.5),
-                borderColor: variant === 'filled' 
-                  ? (severity === 'warning' ? '#212121' : colors.textColor)
-                  : '#212121',
-                color: variant === 'filled' && severity !== 'warning'
-                  ? colors.textColor
-                  : theme.palette.text.primary,
+                borderColor:
+                  variant === 'filled'
+                    ? severity === 'warning'
+                      ? '#212121'
+                      : colors.textColor
+                    : '#212121',
+                color:
+                  variant === 'filled' && severity !== 'warning'
+                    ? colors.textColor
+                    : theme.palette.text.primary,
                 textTransform: 'uppercase',
                 fontSize: '13px', // 0.8125rem
                 fontWeight: 600, // SemiBold
@@ -359,4 +370,3 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
 Alert.displayName = 'Alert';
 
 export default Alert;
-

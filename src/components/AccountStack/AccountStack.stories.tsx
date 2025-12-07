@@ -108,11 +108,7 @@ export const DifferentUsers: Story = {
         <Typography variant="body2" sx={{ mb: 2, fontWeight: 'medium' }}>
           Admin User
         </Typography>
-        <AccountStack
-          userName="Admin User"
-          accountType="Administrator"
-          userInitials="AU"
-        />
+        <AccountStack userName="Admin User" accountType="Administrator" userInitials="AU" />
       </Box>
       <Box>
         <Typography variant="body2" sx={{ mb: 2, fontWeight: 'medium' }}>
@@ -127,4 +123,3 @@ export const DifferentUsers: Story = {
     </Stack>
   ),
 };
-

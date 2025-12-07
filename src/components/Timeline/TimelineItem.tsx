@@ -40,18 +40,7 @@ export type { TimelineItemProps };
  * ```
  */
 export const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
-  (
-    {
-      label,
-      description,
-      action,
-      dotVariant = 'filled',
-      isLast = false,
-      sx,
-      ...props
-    },
-    ref
-  ) => {
+  ({ label, description, action, dotVariant = 'filled', isLast = false, sx, ...props }, ref) => {
     const theme = useTheme();
 
     return (
@@ -179,4 +168,3 @@ export const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
 TimelineItem.displayName = 'TimelineItem';
 
 export default TimelineItem;
-

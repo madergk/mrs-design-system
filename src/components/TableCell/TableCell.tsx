@@ -151,11 +151,7 @@ export const TableCell = React.forwardRef<HTMLDivElement, TableCellProps>(
               flexShrink: 0,
             }}
           >
-            <Checkbox
-              checked={checked}
-              onChange={onCheckboxChange}
-              {...getCheckboxProps()}
-            />
+            <Checkbox checked={checked} onChange={onCheckboxChange} {...getCheckboxProps()} />
           </Box>
         )}
 
@@ -199,4 +195,3 @@ export const TableCell = React.forwardRef<HTMLDivElement, TableCellProps>(
 TableCell.displayName = 'TableCell';
 
 export default TableCell;
-

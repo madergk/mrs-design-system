@@ -8,7 +8,7 @@
  */
 
 import React, { useState } from 'react';
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import { TableHeadRow } from '../TableHeadRow';
 import { TableRow } from '../TableRow';
 import { TableFooter } from '../TableFooter';
@@ -102,7 +102,7 @@ export interface TableProps {
  *
  * @example
  * ```tsx
- * <Table 
+ * <Table
  *   headers={['Name', 'Status', 'Date']}
  *   rows={[
  *     { cells: ['John', 'Active', '2024-01-01'] },
@@ -133,23 +133,26 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
     },
     ref
   ) => {
-    const theme = useTheme();
-
     // Internal state for uncontrolled mode
     const [internalSelectedRows, setInternalSelectedRows] = useState<number[]>([]);
     const [internalPage, setInternalPage] = useState(1);
-    const [internalRowsPerPage, setInternalRowsPerPage] = useState(controlledRowsPerPage);
+    const [internalRowsPerPage] = useState(controlledRowsPerPage);
 
     // Use controlled or internal state
-    const selectedRows = controlledSelectedRows !== undefined ? controlledSelectedRows : internalSelectedRows;
+    const selectedRows =
+      controlledSelectedRows !== undefined ? controlledSelectedRows : internalSelectedRows;
     const page = controlledPage !== undefined ? controlledPage : internalPage;
-    const rowsPerPage = controlledRowsPerPage !== undefined ? controlledRowsPerPage : internalRowsPerPage;
+    const rowsPerPage =
+      controlledRowsPerPage !== undefined ? controlledRowsPerPage : internalRowsPerPage;
 
     // Calculate total count
     const totalCount = count !== undefined ? count : rows.length;
 
     // Handle checkbox change in header (select all)
-    const handleHeaderCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    const handleHeaderCheckboxChange = (
+      _event: React.ChangeEvent<HTMLInputElement>,
+      checked: boolean
+    ) => {
       if (checked) {
         const allIndices = rows.map((_, index) => index);
         if (onSelectionChange) {
@@ -167,23 +170,24 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
     };
 
     // Handle checkbox change in row
-    const handleRowCheckboxChange = (rowIndex: number) => (
-      event: React.ChangeEvent<HTMLInputElement>,
-      checked: boolean
-    ) => {
-      const newSelected = checked
-        ? [...selectedRows, rowIndex]
-        : selectedRows.filter((idx) => idx !== rowIndex);
+    const handleRowCheckboxChange =
+      (rowIndex: number) => (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+        const newSelected = checked
+          ? [...selectedRows, rowIndex]
+          : selectedRows.filter((idx) => idx !== rowIndex);
 
-      if (onSelectionChange) {
-        onSelectionChange(newSelected);
-      } else {
-        setInternalSelectedRows(newSelected);
-      }
-    };
+        if (onSelectionChange) {
+          onSelectionChange(newSelected);
+        } else {
+          setInternalSelectedRows(newSelected);
+        }
+      };
 
     // Handle page change
-    const handlePageChange = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    const handlePageChange = (
+      event: React.MouseEvent<HTMLButtonElement> | null,
+      newPage: number
+    ) => {
       if (onPageChange) {
         onPageChange(event, newPage);
       } else {
@@ -198,16 +202,16 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
     const endIndex = startIndex + rowsPerPage;
 
     // Generate headers if not provided
-    const headersToRender = headers.length > 0
-      ? headers
-      : Array.from({ length: columns }, (_, i) => `Head ${i + 1}`);
+    const headersToRender =
+      headers.length > 0 ? headers : Array.from({ length: columns }, (_, i) => `Head ${i + 1}`);
 
     // Generate rows if not provided
-    const allRows = rows.length > 0
-      ? rows
-      : Array.from({ length: 5 }, (_, i) => ({
-          cells: Array.from({ length: columns }, (_, j) => `Cell ${j + 1}`),
-        }));
+    const allRows =
+      rows.length > 0
+        ? rows
+        : Array.from({ length: 5 }, () => ({
+            cells: Array.from({ length: columns }, (_, j) => `Cell ${j + 1}`),
+          }));
 
     // Get paginated rows (rows for current page only)
     const paginatedRows = allRows.slice(startIndex, endIndex);
@@ -238,23 +242,32 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
           onCheckboxChange={handleHeaderCheckboxChange}
           selected={false}
           divider
-          sortConfig={sortConfig}
+          {...(sortConfig !== undefined && { sortConfig })}
         />
 
         {/* Data Rows - Only render rows for current page */}
         {paginatedRows.map((row, localIndex) => {
           // Calculate global index: startIndex (first row of current page) + localIndex (position within page)
           const globalIndex = startIndex + localIndex;
+
+          // Type-safe property access with type narrowing
+          const tableRowData = row as TableRowData;
+          const rowId = tableRowData.id !== undefined ? tableRowData.id : globalIndex;
+          const rowSelected =
+            tableRowData.selected !== undefined
+              ? tableRowData.selected
+              : selectedRows.includes(globalIndex);
+
           return (
             <TableRow
-              key={row.id || globalIndex}
+              key={rowId}
               cells={row.cells}
               columns={columns}
               small={small}
               checkbox={checkbox}
               checked={selectedRows.includes(globalIndex)}
               onCheckboxChange={handleRowCheckboxChange(globalIndex)}
-              selected={row.selected !== undefined ? row.selected : selectedRows.includes(globalIndex)}
+              selected={rowSelected}
               divider
             />
           );
@@ -267,7 +280,7 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
             rowsPerPage={rowsPerPage}
             count={totalCount}
             onPageChange={handlePageChange}
-            onRowsPerPageChange={onRowsPerPageChange}
+            {...(onRowsPerPageChange !== undefined && { onRowsPerPageChange })}
           />
         )}
       </Box>
@@ -278,4 +291,3 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
 Table.displayName = 'Table';
 
 export default Table;
-

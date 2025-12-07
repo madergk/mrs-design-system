@@ -72,9 +72,9 @@ export interface TableRowProps {
  * @example
  * ```tsx
  * <TableRow cells={['Cell 1', 'Cell 2', 'Cell 3']} />
- * <TableRow 
- *   cells={['Cell 1', 'Cell 2']} 
- *   checkbox 
+ * <TableRow
+ *   cells={['Cell 1', 'Cell 2']}
+ *   checkbox
  *   checked={true}
  *   selected
  *   divider
@@ -118,9 +118,8 @@ export const TableRow = React.forwardRef<HTMLDivElement, TableRowProps>(
     const height = small ? 32 : 52;
 
     // Generate cells array if not provided
-    const cellsToRender = cells.length > 0 
-      ? cells 
-      : Array.from({ length: columns }, (_, i) => `Cell ${i + 1}`);
+    const cellsToRender =
+      cells.length > 0 ? cells : Array.from({ length: columns }, (_, i) => `Cell ${i + 1}`);
 
     return (
       <Box
@@ -129,9 +128,7 @@ export const TableRow = React.forwardRef<HTMLDivElement, TableRowProps>(
         sx={{
           display: 'flex',
           alignItems: 'center',
-          borderBottom: divider 
-            ? `1px solid ${theme.palette.divider}` 
-            : 'none',
+          borderBottom: divider ? `1px solid ${theme.palette.divider}` : 'none',
           backgroundColor: getBackgroundColor(),
           height: height,
           width: '100%',
@@ -147,7 +144,6 @@ export const TableRow = React.forwardRef<HTMLDivElement, TableRowProps>(
           const showCheckbox = checkbox && isFirstCell;
 
           const cellProps: React.ComponentProps<typeof TableCell> = {
-            key: index,
             small,
             checkbox: showCheckbox,
             checked,
@@ -162,7 +158,7 @@ export const TableRow = React.forwardRef<HTMLDivElement, TableRowProps>(
           }
 
           return (
-            <TableCell {...cellProps}>
+            <TableCell key={index} {...cellProps}>
               {typeof cell === 'string' ? cell : cell}
             </TableCell>
           );
@@ -175,4 +171,3 @@ export const TableRow = React.forwardRef<HTMLDivElement, TableRowProps>(
 TableRow.displayName = 'TableRow';
 
 export default TableRow;
-

@@ -127,15 +127,9 @@ export const AllVariants: Story = {
           Selected Row
         </Typography>
         <Box sx={{ border: '1px solid #e0e0e0', borderRadius: 1 }}>
-          <TableRow
-            cells={['Cell 1', 'Cell 2', 'Cell 3']}
-            columns={3}
-            selected
-            divider
-          />
+          <TableRow cells={['Cell 1', 'Cell 2', 'Cell 3']} columns={3} selected divider />
         </Box>
       </Box>
     </Stack>
   ),
 };
-

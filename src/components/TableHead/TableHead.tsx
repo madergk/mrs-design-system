@@ -238,4 +238,3 @@ export const TableHead = React.forwardRef<HTMLDivElement, TableHeadProps>(
 TableHead.displayName = 'TableHead';
 
 export default TableHead;
-

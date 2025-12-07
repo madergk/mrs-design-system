@@ -89,4 +89,3 @@ export interface TimelineProps {
    */
   sx?: SxProps<Theme>;
 }
-

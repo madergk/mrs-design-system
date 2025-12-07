@@ -10,10 +10,9 @@
  */
 
 import React from 'react';
-import { Box, useTheme } from '@mui/material';
+import { Box, useTheme, Avatar } from '@mui/material';
 import { IconButton } from '../IconButton';
 import { Icon } from '../Icon';
-import { Avatar } from '../Avatar';
 import { Typography } from '../Typography';
 
 export interface AccountStackProps {
@@ -93,7 +92,7 @@ export const AccountStack = React.forwardRef<HTMLDivElement, AccountStackProps>(
     ref
   ) => {
     const theme = useTheme();
-    
+
     return (
       <Box
         ref={ref}
@@ -174,18 +173,16 @@ export const AccountStack = React.forwardRef<HTMLDivElement, AccountStackProps>(
         {showUser && (
           <Avatar
             variant="circular"
-            size="40px"
-            content={userAvatarSrc ? 'image' : 'text'}
-            initials={userInitials}
             {...(userAvatarSrc ? { src: userAvatarSrc } : {})}
             {...(userAvatarAlt ? { alt: userAvatarAlt } : {})}
             sx={{
-              minWidth: '40px',
-              minHeight: '40px',
-              maxWidth: '40px',
-              maxHeight: '40px',
+              width: '40px',
+              height: '40px',
+              fontSize: '1rem',
             }}
-          />
+          >
+            {!userAvatarSrc && userInitials}
+          </Avatar>
         )}
       </Box>
     );
@@ -195,4 +192,3 @@ export const AccountStack = React.forwardRef<HTMLDivElement, AccountStackProps>(
 AccountStack.displayName = 'AccountStack';
 
 export default AccountStack;
-

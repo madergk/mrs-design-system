@@ -79,24 +79,14 @@ export const Default: Story = {
 export const Severities: Story = {
   render: () => (
     <Stack spacing={3} sx={{ width: 400 }}>
-      <Alert
-        severity="error"
-        variant="filled"
-        title="Error"
-        description="This is an error alert"
-      />
+      <Alert severity="error" variant="filled" title="Error" description="This is an error alert" />
       <Alert
         severity="warning"
         variant="filled"
         title="Warning"
         description="This is a warning alert"
       />
-      <Alert
-        severity="info"
-        variant="filled"
-        title="Info"
-        description="This is an info alert"
-      />
+      <Alert severity="info" variant="filled" title="Info" description="This is an info alert" />
       <Alert
         severity="success"
         variant="filled"
@@ -325,4 +315,3 @@ export const CompleteShowcase: Story = {
     layout: 'fullscreen',
   },
 };
-

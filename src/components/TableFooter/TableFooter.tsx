@@ -53,7 +53,7 @@ export interface TableFooterProps {
  *
  * @example
  * ```tsx
- * <TableFooter 
+ * <TableFooter
  *   page={1}
  *   rowsPerPage={10}
  *   count={100}
@@ -67,9 +67,9 @@ export const TableFooter = React.forwardRef<HTMLDivElement, TableFooterProps>(
       page = 1,
       rowsPerPage = 10,
       count = 0,
-      rowsPerPageOptions = [5, 10, 25, 50, 100],
+      rowsPerPageOptions: _rowsPerPageOptions = [5, 10, 25, 50, 100],
       onPageChange,
-      onRowsPerPageChange,
+      onRowsPerPageChange: _onRowsPerPageChange,
       sx,
       ...props
     },
@@ -214,4 +214,3 @@ export const TableFooter = React.forwardRef<HTMLDivElement, TableFooterProps>(
 TableFooter.displayName = 'TableFooter';
 
 export default TableFooter;
-

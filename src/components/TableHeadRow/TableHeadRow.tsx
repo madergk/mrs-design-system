@@ -73,9 +73,9 @@ export interface TableHeadRowProps {
  * @example
  * ```tsx
  * <TableHeadRow labels={['Name', 'Status', 'Date']} />
- * <TableHeadRow 
- *   labels={['Name', 'Status']} 
- *   checkbox 
+ * <TableHeadRow
+ *   labels={['Name', 'Status']}
+ *   checkbox
  *   checked={true}
  *   selected
  *   divider
@@ -115,9 +115,8 @@ export const TableHeadRow = React.forwardRef<HTMLDivElement, TableHeadRowProps>(
     const height = small ? 36 : 56;
 
     // Generate labels array if not provided
-    const labelsToRender = labels.length > 0 
-      ? labels 
-      : Array.from({ length: columns }, (_, i) => `Head ${i + 1}`);
+    const labelsToRender =
+      labels.length > 0 ? labels : Array.from({ length: columns }, (_, i) => `Head ${i + 1}`);
 
     return (
       <Box
@@ -125,9 +124,7 @@ export const TableHeadRow = React.forwardRef<HTMLDivElement, TableHeadRowProps>(
         sx={{
           display: 'flex',
           alignItems: 'center',
-          borderBottom: divider 
-            ? `1px solid ${theme.palette.divider}` 
-            : 'none',
+          borderBottom: divider ? `1px solid ${theme.palette.divider}` : 'none',
           backgroundColor: getBackgroundColor(),
           height: height,
           width: '100%',
@@ -141,17 +138,14 @@ export const TableHeadRow = React.forwardRef<HTMLDivElement, TableHeadRowProps>(
           const showCheckbox = checkbox && isFirstCell;
 
           // Get sort configuration for this column
-          const sort = sortConfig && sortConfig[index] !== undefined 
-            ? sortConfig[index] 
-            : 'none';
+          const sort = sortConfig && sortConfig[index] !== undefined ? sortConfig[index] : 'none';
 
           const headProps: React.ComponentProps<typeof TableHead> = {
-            key: index,
             label,
             small,
             checkbox: showCheckbox,
             checked,
-            indeterminate: showCheckbox ? indeterminate : undefined,
+            ...(showCheckbox && indeterminate !== undefined && { indeterminate }),
             leftSort: sort === 'left',
             rightSort: sort === 'right',
             sx: {
@@ -164,7 +158,7 @@ export const TableHeadRow = React.forwardRef<HTMLDivElement, TableHeadRowProps>(
             headProps.onCheckboxChange = onCheckboxChange;
           }
 
-          return <TableHead {...headProps} />;
+          return <TableHead key={index} {...headProps} />;
         })}
       </Box>
     );
@@ -174,4 +168,3 @@ export const TableHeadRow = React.forwardRef<HTMLDivElement, TableHeadRowProps>(
 TableHeadRow.displayName = 'TableHeadRow';
 
 export default TableHeadRow;
-

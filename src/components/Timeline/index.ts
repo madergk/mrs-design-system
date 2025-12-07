@@ -15,4 +15,3 @@ export { TimelineConnector } from './TimelineConnector';
 export type { TimelineConnectorProps } from './TimelineConnector';
 
 export type { TimelineDotVariant } from './Timeline.types';
-
