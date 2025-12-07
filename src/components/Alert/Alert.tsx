@@ -113,14 +113,14 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     // Get icon name based on severity
     const getIconName = ():
       | 'ErrorRounded'
-      | 'WarningAmberRounded'
+      | 'ErrorRounded'
       | 'InfoRounded'
       | 'CheckCircleRounded' => {
       switch (severity) {
         case 'error':
           return 'ErrorRounded';
         case 'warning':
-          return 'WarningAmberRounded';
+          return 'ErrorRounded';
         case 'info':
           return 'InfoRounded';
         case 'success':
@@ -231,7 +231,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           alignItems: 'flex-start',
           backgroundColor: colors.backgroundColor,
           border: colors.borderColor ? `1px solid ${colors.borderColor}` : 'none',
-          borderRadius: theme.shape.borderRadius || 12, // 12px
+          borderRadius: theme.shape.borderRadius || 1, // 12px
           padding: theme.spacing(1), // 8px
           minWidth: 320,
           maxWidth: 640,

@@ -125,6 +125,11 @@ export const Variants: Story = {
 
 // Complete showcase matching Figma design
 export const CompleteShowcase: Story = {
+  args: {
+    severity: 'error',
+    variant: 'filled',
+  },
+
   render: () => (
     <Box sx={{ p: 4, maxWidth: 1400 }}>
       <Typography variant="h4" sx={{ mb: 4 }}>
@@ -311,6 +316,7 @@ export const CompleteShowcase: Story = {
       </Box>
     </Box>
   ),
+
   parameters: {
     layout: 'fullscreen',
   },
