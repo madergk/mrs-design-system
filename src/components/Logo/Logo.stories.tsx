@@ -16,7 +16,7 @@ const meta: Meta<typeof Logo> = {
     docs: {
       description: {
         component:
-          'Displays the MiREDSALUD logo with green/teal styling. "Mi" is displayed in secondary/main (bright green) color. "REDSALUD" is displayed in teal color.',
+          'Displays the MiREDSALUD logo with green/primary styling. "Mi" is displayed in secondary/main (bright green) color. "REDSALUD" is displayed in primary/main (verones) color.',
       },
     },
   },

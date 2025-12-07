@@ -1,9 +1,9 @@
 /**
  * Logo Component
  *
- * Displays the MiREDSALUD logo with green/teal styling.
+ * Displays the MiREDSALUD logo with green/primary styling.
  * "Mi" is displayed in secondary/main (bright green) color.
- * "REDSALUD" is displayed in teal color.
+ * "REDSALUD" is displayed in primary/main (verones) color.
  */
 
 import React from 'react';
@@ -12,7 +12,6 @@ import { Typography } from '../Typography';
 import {
   semanticColors,
   typographyVariants,
-  primitiveColors,
 } from '../../theme/designTokens';
 
 export interface LogoProps {
@@ -66,7 +65,7 @@ export const Logo = React.forwardRef<HTMLDivElement, LogoProps>(
             fontSize: `${typographyVariants.h6.fontSize}px`,
             fontWeight: typographyVariants.h6.fontWeight,
             lineHeight: typographyVariants.h6.lineHeight,
-            color: primitiveColors.teal, // Teal for "REDSALUD"
+            color: semanticColors.primary.main, // Primary color (verones) for "REDSALUD"
           }}
         >
           REDSALUD

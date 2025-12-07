@@ -341,7 +341,7 @@ export function createAppTheme(mode: PaletteMode = 'light') {
             backgroundColor: componentTokens.input.filled.enabledFill,
             borderRadius: `${primitiveRadius.md}px ${primitiveRadius.md}px 0 0`,
             '&:hover:not(.Mui-disabled)': {
-              backgroundColor: hexToRgba(primitiveColors.black, opacityValues.hover),
+              backgroundColor: hexToRgba('#000000', opacityValues.hover),
             },
             '&.Mui-focused': {
               backgroundColor: componentTokens.input.filled.enabledFill,
@@ -457,19 +457,19 @@ export function createAppTheme(mode: PaletteMode = 'light') {
             backgroundColor: 'transparent',
             // Hover state
             '&:hover': {
-              backgroundColor: hexToRgba(primitiveColors.black, opacityValues.hover), // rgba(0,0,0,0.08)
+              backgroundColor: hexToRgba('#000000', opacityValues.hover), // rgba(0,0,0,0.08)
               padding: 4,
             },
             // Focus state
             '&:focus-visible': {
-              backgroundColor: hexToRgba(primitiveColors.black, opacityValues.focus), // rgba(0,0,0,0.08)
+              backgroundColor: hexToRgba('#000000', opacityValues.focus), // rgba(0,0,0,0.08)
               padding: 4,
             },
             // Disabled state
             '&.Mui-disabled': {
               '& .MuiSvgIcon-root': {
                 opacity: opacityValues.disabled, // 38% opacity
-                color: primitiveColors.black,
+                color: '#000000',
               },
             },
           },
@@ -479,14 +479,14 @@ export function createAppTheme(mode: PaletteMode = 'light') {
               color: semanticColors.primary.main, // #00686f
             },
             '&:hover': {
-              backgroundColor: semanticColors.primary.states.hover, // rgba(0,153,153,0.12) = #0099991f
+              backgroundColor: hexToRgba(semanticColors.primary.main, opacityValues.focus), // rgba(0,104,111,0.12)
             },
             '&:focus-visible': {
-              backgroundColor: semanticColors.primary.states.hover, // rgba(0,153,153,0.12) = #0099991f
+              backgroundColor: hexToRgba(semanticColors.primary.main, opacityValues.focus), // rgba(0,104,111,0.12)
             },
             '&.Mui-disabled': {
               '& .MuiSvgIcon-root': {
-                color: primitiveColors.black,
+                color: '#000000',
               },
             },
           },
@@ -502,7 +502,7 @@ export function createAppTheme(mode: PaletteMode = 'light') {
             },
             '&.Mui-disabled': {
               '& .MuiSvgIcon-root': {
-                color: primitiveColors.black,
+                color: '#000000',
               },
             },
           },
@@ -518,7 +518,7 @@ export function createAppTheme(mode: PaletteMode = 'light') {
             },
             '&.Mui-disabled': {
               '& .MuiSvgIcon-root': {
-                color: primitiveColors.black,
+                color: '#000000',
               },
             },
           },
@@ -614,7 +614,7 @@ export function createAppTheme(mode: PaletteMode = 'light') {
             width: 34,
             borderRadius: 100,
             opacity: 0.38,
-            backgroundColor: primitiveColors.black,
+            backgroundColor: '#000000',
             // Note: Checked state styling is handled in switchBase section using '&.Mui-checked + .MuiSwitch-track'
           },
           sizeSmall: {

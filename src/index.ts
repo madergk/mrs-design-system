@@ -64,6 +64,15 @@ export type { SelectProps } from './components/Select';
 export { Stepper } from './components/Stepper';
 export type { StepperProps, StepperStep } from './components/Stepper';
 
+export { Timeline, TimelineItem, TimelineDot, TimelineConnector } from './components/Timeline';
+export type {
+  TimelineProps,
+  TimelineItemProps,
+  TimelineDotProps,
+  TimelineConnectorProps,
+  TimelineDotVariant,
+} from './components/Timeline';
+
 // Typography & Content
 export { Typography } from './components/Typography';
 export type { TypographyProps } from './components/Typography';

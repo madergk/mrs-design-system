@@ -12,22 +12,13 @@
     "verones": {
       "value": "#00686f",
       "type": "color",
-      "description": "Primary teal color - source: material/colors/verones"
-    },
-    "teal": {
-      "value": "#009999",
-      "type": "color",
-      "description": "Alternative teal shade"
+      "description": "Primary color - source: material/colors/verones"
     },
     "deepPurple": {
       "500": {
         "value": "#673ab7",
         "type": "color"
       }
-    },
-    "black": {
-      "value": "#000000",
-      "type": "color"
     },
     "white": {
       "value": "#ffffff",

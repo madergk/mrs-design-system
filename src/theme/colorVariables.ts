@@ -14,8 +14,6 @@
 
 export const primitiveColors = {
   verones: '#00686f',
-  teal: '#009999',
-  black: '#000000',
   white: '#ffffff',
 } as const;
 

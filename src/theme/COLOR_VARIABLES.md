@@ -14,9 +14,8 @@ Primitivos → Semánticos → Componentes
 
 ### 1. **Colores Primitivos** (`primitiveColors`)
 Valores base extraídos de Figma. Son los "ladrillos" fundamentales:
-- `verones`: `#00686f` (color primario de marca)
-- `teal`: `#009999`
-- `black`, `white`
+- `verones`: `#00686f` (color primario único de marca)
+- `white`: `#ffffff`
 - Escala de grises (`gray.50` a `gray.900`)
 
 ### 2. **Colores Semánticos** (`semanticColors`)
