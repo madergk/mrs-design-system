@@ -113,7 +113,7 @@ type Story = StoryObj<typeof Icon>;
 // Default story
 export const Default: Story = {
   args: {
-    name: 'ChevronLeftRounded',
+    name: 'AddRounded',
     color: 'inherit',
     fontSize: 'medium',
   },

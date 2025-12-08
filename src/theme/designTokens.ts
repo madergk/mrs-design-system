@@ -65,7 +65,7 @@ export const primitiveSpacing = {
 
 export const primitiveRadius = {
   none: 0,
-  md: 12,
+  md: 2,
   rounded: 999,
 } as const;
 

@@ -15,7 +15,7 @@ import { Icon } from '../Icon';
 import { IconButton } from '../IconButton';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
-import { primitiveRadius } from '@/theme';
+import { primitiveRadius, typographyVariants, semanticColors } from '@/theme';
 
 export interface AlertProps {
   /**
@@ -146,78 +146,82 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         switch (severity) {
           case 'error':
             return {
-              backgroundColor: '#ab1a1a', // error/main
-              textColor: '#ffffff', // error/contrastText
-              iconColor: '#ffffff',
-              closeColor: '#ffffff',
+              backgroundColor: semanticColors.error.main, // #ab1a1a
+              textColor: semanticColors.error.contrastText, // #ffffff
+              iconColor: semanticColors.error.contrastText,
+              closeColor: semanticColors.error.contrastText,
               borderColor: undefined,
             };
           case 'warning':
             return {
-              backgroundColor: '#dfa00a', // warning/main
-              textColor: 'rgba(0, 0, 0, 0.87)', // text/primary
-              iconColor: 'rgba(0, 0, 0, 0.87)',
-              closeColor: '#ffffff', // White X for filled warning
+              backgroundColor: semanticColors.warning.main, // #dfa00a
+              textColor: semanticColors.text.primary, // rgba(0, 0, 0, 0.87)
+              iconColor: semanticColors.text.primary,
+              closeColor: semanticColors.text.primary, // Bkack X for filled warning (per Figma design)
               borderColor: undefined,
             };
           case 'info':
             return {
-              backgroundColor: '#125c87', // info/dark
-              textColor: '#ffffff', // info/contrastText
-              iconColor: '#ffffff',
-              closeColor: '#ffffff',
+              backgroundColor: '#125c87', // info/dark (from Figma, not in semanticColors)
+              textColor: semanticColors.info.contrastText, // #ffffff
+              iconColor: semanticColors.info.contrastText,
+              closeColor: semanticColors.info.contrastText,
               borderColor: undefined,
             };
           case 'success':
             return {
-              backgroundColor: '#1e5b21', // success/dark
-              textColor: '#ffffff', // success/contrastText
-              iconColor: '#ffffff',
-              closeColor: '#ffffff',
+              backgroundColor: '#1e5b21', // success/dark (from Figma, not in semanticColors)
+              textColor: semanticColors.success.contrastText, // #ffffff
+              iconColor: semanticColors.success.contrastText,
+              closeColor: semanticColors.success.contrastText,
               borderColor: undefined,
             };
           default:
             return {
-              backgroundColor: '#ab1a1a',
-              textColor: '#ffffff',
-              iconColor: '#ffffff',
-              closeColor: '#ffffff',
+              backgroundColor: semanticColors.error.main,
+              textColor: semanticColors.error.contrastText,
+              iconColor: semanticColors.error.contrastText,
+              closeColor: semanticColors.error.contrastText,
               borderColor: undefined,
             };
         }
       }
 
-      // Outlined and Standard variants
+      // Outlined and Standard variants - colors from colorVariables.json
       const variantColors: Record<
         'error' | 'warning' | 'info' | 'success',
-        { light: string; dark: string }
+        { background: string; color: string; border: string }
       > = {
         error: {
-          light: '#fef2f4', // error/light
-          dark: '#620f0f', // error/dark (for border and text)
+          background: '#fdeded', // alert/error/background
+          color: '#5f2120', // alert/error/color
+          border: '#ab1a1a', // alert/error/border
         },
         warning: {
-          light: '#fffadf', // warning/light
-          dark: '#5e2902', // warning/dark (for border and text)
+          background: '#fff3e0', // alert/warning/background
+          color: '#3e2410', // alert/warning/color
+          border: '#dfa00a', // alert/warning/border
         },
         info: {
-          light: '#e3ecf2', // info/light
-          dark: '#125c87', // info/dark (for border and text)
+          background: '#e5f6fd', // alert/info/background
+          color: '#014361', // alert/info/color
+          border: '#2481b8', // alert/info/border
         },
         success: {
-          light: '#e0ebe7', // success/light
-          dark: '#1e5b21', // success/dark (for border and text)
+          background: '#edf7ed', // alert/success/background
+          color: '#1e4620', // alert/success/color
+          border: '#2e7d32', // alert/success/border
         },
       };
 
       const severityKey = severity as keyof typeof variantColors;
       const colorConfig = variantColors[severityKey] || variantColors.error;
       return {
-        backgroundColor: colorConfig.light,
-        textColor: colorConfig.dark,
-        iconColor: colorConfig.dark,
-        closeColor: colorConfig.dark,
-        borderColor: variant === 'outlined' ? colorConfig.dark : undefined,
+        backgroundColor: colorConfig.background,
+        textColor: colorConfig.color,
+        iconColor: colorConfig.color,
+        closeColor: colorConfig.color,
+        borderColor: variant === 'outlined' ? colorConfig.border : undefined,
       };
     };
 
@@ -278,14 +282,13 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           {title && (
             <Typography
               sx={{
-                fontFamily: theme.typography.fontFamily,
-                fontSize: '16px', // 1rem
-                fontWeight: 500, // Medium
-                lineHeight: 1.5,
+                fontFamily: typographyVariants.alert.title.fontFamily,
+                fontSize: typographyVariants.alert.title.fontSize,
+                fontWeight: typographyVariants.alert.title.fontWeight,
+                lineHeight: typographyVariants.alert.title.lineHeight,
                 letterSpacing: '0.15px',
                 color: colors.textColor,
                 width: '100%',
-                height: 26,
               }}
             >
               {title}
@@ -296,14 +299,14 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           {description && (
             <Typography
               sx={{
-                fontFamily: theme.typography.fontFamily,
-                fontSize: '14px', // 0.875rem
-                fontWeight: 400, // Regular
-                lineHeight: 1.43,
+                fontFamily: typographyVariants.alert.description.fontFamily,
+                fontSize: typographyVariants.alert.description.fontSize,
+                fontWeight: typographyVariants.alert.description.fontWeight,
+                lineHeight: typographyVariants.alert.description.lineHeight,
                 letterSpacing: '0.15px',
                 color: colors.textColor,
                 width: '100%',
-                height: 26,
+                marginTop: title ? theme.spacing(0.5) : 0, // 4px gap between title and description
               }}
             >
               {description}
@@ -351,7 +354,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             onClick={onClose}
             sx={{
               padding: theme.spacing(1), // 8px
-              borderRadius: '100px',
+              borderRadius: primitiveRadius.rounded,
               width: 32,
               height: 32,
               flexShrink: 0,
