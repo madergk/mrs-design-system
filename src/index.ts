@@ -73,6 +73,14 @@ export type {
   TimelineDotVariant,
 } from './components/Timeline';
 
+export { NavigationMenu } from './components/NavigationMenu';
+export type {
+  NavigationMenuProps,
+  NavigationItem,
+  NavigationSection,
+  NavigationCTA,
+} from './components/NavigationMenu';
+
 // Typography & Content
 export { Typography } from './components/Typography';
 export type { TypographyProps } from './components/Typography';
