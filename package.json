@@ -1,0 +1,127 @@
+{
+  "name": "mrs-design-system",
+  "version": "1.0.0-beta.1",
+  "description": "MRS Design System - A comprehensive React design system built on Material UI with design tokens extracted from Figma",
+  "keywords": [
+    "design-system",
+    "react",
+    "material-ui",
+    "mui",
+    "components",
+    "typescript",
+    "design-tokens",
+    "figma",
+    "component-library",
+    "ui-components",
+    "theme",
+    "ui-kit",
+    "react-components",
+    "emotion",
+    "storybook"
+  ],
+  "author": "MRS Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madergk/mrs-design-system"
+  },
+  "bugs": {
+    "url": "https://github.com/madergk/mrs-design-system/issues"
+  },
+  "homepage": "https://github.com/madergk/mrs-design-system#readme",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "import": "./dist/theme/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,json,css,md}\"",
+    "type-check": "tsc --noEmit",
+    "setup-hooks": "node scripts/setup-hooks.js",
+    "chromatic": "chromatic --project-token=chpt_aec6e164301ece6",
+    "prepublishOnly": "npm run lint && npm run type-check && npm run test:run && npm run build",
+    "preversion": "npm run lint && npm run test:run",
+    "postversion": "git push && git push --tags"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^7.2.0",
+    "@mui/material": "^7.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@gsap/react": "^2.1.2",
+    "@storybook/addon-essentials": "^8.6.0",
+    "@storybook/addon-interactions": "^8.6.0",
+    "@storybook/addon-links": "^8.6.0",
+    "@storybook/blocks": "^8.6.0",
+    "@storybook/react": "^8.6.0",
+    "@storybook/react-vite": "^8.6.0",
+    "@storybook/test": "^8.6.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^4.0.14",
+    "@vitest/ui": "^4.0.14",
+    "chromatic": "^13.3.4",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "jsdom": "^27.2.0",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.3",
+    "storybook": "^8.6.0",
+    "typescript": "^5.5.4",
+    "vite": "^6.0.0",
+    "vitest": "^4.0.14"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}

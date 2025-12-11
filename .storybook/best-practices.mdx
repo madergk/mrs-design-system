@@ -1,0 +1,340 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/Best Practices" />
+
+# Mejores Prácticas
+
+Guía de mejores prácticas para usar el MRS Design System de manera efectiva y consistente.
+
+## 🎯 Principios Fundamentales
+
+### 1. Usa Componentes del Sistema
+
+**✅ Correcto:**
+```tsx
+import { Button } from 'mrs-design-system';
+
+<Button variant="contained" color="primary">
+  Submit
+</Button>
+```
+
+**❌ Incorrecto:**
+```tsx
+<button className="custom-button">
+  Submit
+</button>
+```
+
+**Por qué:** Los componentes del sistema garantizan consistencia visual, accesibilidad y mantenibilidad.
+
+### 2. Usa Design Tokens, No Valores Hardcodeados
+
+**✅ Correcto:**
+```tsx
+import { useTheme } from '@mui/material/styles';
+
+const theme = useTheme();
+<Box sx={{ 
+  padding: theme.spacing(2),
+  color: theme.palette.primary.main 
+}}>
+```
+
+**❌ Incorrecto:**
+```tsx
+<Box sx={{ 
+  padding: '16px',
+  color: '#00686f' 
+}}>
+```
+
+**Por qué:** Los tokens centralizan los valores de diseño y facilitan actualizaciones globales.
+
+### 3. Composición sobre Configuración
+
+**✅ Correcto:**
+```tsx
+<Card>
+  <CardHeader title="My Card" />
+  <CardContent>
+    <Typography>Content here</Typography>
+  </CardContent>
+  <CardActions>
+    <Button>Action</Button>
+  </CardActions>
+</Card>
+```
+
+**❌ Incorrecto:**
+```tsx
+<Card 
+  header="My Card"
+  content="Content here"
+  actions={[<Button>Action</Button>]}
+/>
+```
+
+**Por qué:** La composición es más flexible y sigue los principios de React.
+
+## 📐 Estructura de Componentes
+
+### Organización de Archivos
+
+Cada componente debe seguir esta estructura:
+
+```
+ComponentName/
+├── ComponentName.tsx      # Componente principal
+├── ComponentName.stories.tsx  # Stories de Storybook
+├── ComponentName.test.tsx     # Tests (opcional)
+└── index.ts                   # Exports
+```
+
+### Naming Conventions
+
+- **Componentes**: PascalCase (`Button`, `CardHeader`)
+- **Props**: camelCase (`smallScreen`, `fullWidth`)
+- **Variantes**: camelCase o PascalCase según el componente (`contained`, `Standard`)
+- **Archivos**: PascalCase para componentes, camelCase para utilidades
+
+## 🎨 Uso de Variantes
+
+### Variantes de Componentes
+
+Cada componente tiene variantes documentadas. Siempre usa las variantes oficiales:
+
+```tsx
+// ✅ Correcto - variantes oficiales
+<Button variant="contained" />
+<Button variant="outlined" />
+<Button variant="text" />
+
+// ❌ Incorrecto - variante no existente
+<Button variant="custom" />
+```
+
+### Tamaños
+
+Usa los tamaños estándar del sistema:
+
+```tsx
+// ✅ Correcto
+<Button size="small" />
+<Button size="medium" />
+<Button size="large" />
+
+// ❌ Evitar tamaños custom
+<Button size="extra-large" />
+```
+
+## 🎭 Theming y Personalización
+
+### Usar el Theme Provider
+
+Siempre envuelve tu aplicación con `ThemeProvider`:
+
+```tsx
+import { ThemeProvider } from '@mui/material';
+import { theme } from 'mrs-design-system';
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      {/* Tu aplicación */}
+    </ThemeProvider>
+  );
+}
+```
+
+### Personalización con sx Prop
+
+Para personalizaciones menores, usa la prop `sx`:
+
+```tsx
+// ✅ Correcto - personalización menor
+<Button 
+  sx={{ 
+    marginTop: 2,
+    width: '100%' 
+  }}
+>
+  Submit
+</Button>
+
+// ❌ Evitar - sobrescribir estilos fundamentales
+<Button 
+  sx={{ 
+    backgroundColor: '#ff0000', // Usa color prop en su lugar
+    fontSize: '20px'            // Usa size prop en su lugar
+  }}
+>
+```
+
+### Crear Variantes Personalizadas
+
+Si necesitas variantes que no existen, extiende el componente:
+
+```tsx
+import { Button } from 'mrs-design-system';
+import { styled } from '@mui/material/styles';
+
+const CustomButton = styled(Button)(({ theme }) => ({
+  // Personalizaciones específicas
+  borderRadius: theme.shape.borderRadius * 2,
+}));
+```
+
+## ♿ Accesibilidad
+
+### Labels y ARIA
+
+Siempre proporciona labels accesibles:
+
+```tsx
+// ✅ Correcto
+<IconButton aria-label="Close dialog">
+  <CloseIcon />
+</IconButton>
+
+// ❌ Incorrecto
+<IconButton>
+  <CloseIcon />
+</IconButton>
+```
+
+### Navegación por Teclado
+
+Los componentes del sistema ya incluyen soporte de teclado. No lo deshabilites sin razón:
+
+```tsx
+// ✅ Correcto
+<Button onClick={handleClick}>
+  Submit
+</Button>
+
+// ❌ Evitar - deshabilitar navegación por teclado
+<Button onClick={handleClick} tabIndex={-1}>
+  Submit
+</Button>
+```
+
+### Contraste de Colores
+
+Usa los colores del sistema que ya cumplen con WCAG:
+
+```tsx
+// ✅ Correcto - colores del sistema
+<Button color="primary">Submit</Button>
+<Button color="error">Delete</Button>
+
+// ⚠️ Cuidado - verificar contraste
+<Button sx={{ color: '#ff0000', bgcolor: '#ff0000' }}>
+  Low Contrast
+</Button>
+```
+
+## 📱 Responsive Design
+
+### Mobile-First
+
+Diseña primero para móvil, luego escala:
+
+```tsx
+// ✅ Correcto - mobile-first
+<Box sx={{
+  padding: { xs: 1, sm: 2, md: 3 },
+  fontSize: { xs: '0.875rem', md: '1rem' }
+}}>
+```
+
+### Breakpoints del Sistema
+
+Usa los breakpoints del theme:
+
+```tsx
+const theme = useTheme();
+
+// xs: 0px
+// sm: 600px
+// md: 900px
+// lg: 1200px
+// xl: 1536px
+```
+
+## 🧪 Testing
+
+### Testing de Componentes
+
+Cuando uses componentes en tests:
+
+```tsx
+import { render, screen } from '@testing-library/react';
+import { ThemeProvider } from '@mui/material';
+import { theme, Button } from 'mrs-design-system';
+
+test('renders button', () => {
+  render(
+    <ThemeProvider theme={theme}>
+      <Button>Click me</Button>
+    </ThemeProvider>
+  );
+  
+  expect(screen.getByRole('button')).toBeInTheDocument();
+});
+```
+
+## 🚫 Errores Comunes
+
+### 1. Olvidar el ThemeProvider
+
+```tsx
+// ❌ Incorrecto
+function App() {
+  return <Button>Click</Button>; // No funcionará correctamente
+}
+
+// ✅ Correcto
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Button>Click</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+### 2. Mezclar Sistemas de Estilos
+
+```tsx
+// ❌ Evitar - mezclar CSS modules con sx
+<div className={styles.container}>
+  <Button sx={{ margin: 2 }}>Click</Button>
+</div>
+
+// ✅ Correcto - usar sx consistentemente
+<Box sx={{ padding: 2 }}>
+  <Button sx={{ margin: 2 }}>Click</Button>
+</Box>
+```
+
+### 3. Ignorar TypeScript
+
+```tsx
+// ❌ Evitar - usar any
+const handleClick = (e: any) => { ... }
+
+// ✅ Correcto - tipos específicos
+const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => { ... }
+```
+
+## 📚 Recursos Adicionales
+
+- [Material UI Best Practices](https://mui.com/material-ui/getting-started/usage/)
+- [React Best Practices](https://react.dev/learn)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+
+---
+
+**Siguiente**: [Guía de Contribución](./?path=/docs/introduction-contributing--docs)
+

@@ -1,0 +1,150 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/Getting Started" />
+
+# MRS Design System
+
+Bienvenido al **MRS Design System**, un sistema de diseño completo construido sobre Material UI con tokens de diseño extraídos directamente de Figma.
+
+## 🎯 ¿Qué es este Design System?
+
+Este design system proporciona una biblioteca de componentes React reutilizables, completamente tipados con TypeScript, que siguen los principios de diseño establecidos en Figma. Todos los componentes están construidos con **design tokens** que garantizan consistencia visual y facilitan el mantenimiento.
+
+## 🏗️ Arquitectura de Tokens
+
+Nuestro sistema de tokens sigue una jerarquía de tres niveles:
+
+### 1. **Tokens Primitivos** (Primitive Tokens)
+Valores base que sirven como fundamento:
+- Colores base (ej: `verones: '#00686f'`)
+- Tipografía: familias, tamaños, pesos
+- Espaciado: escala base de 8px
+- Radio de borde
+- Breakpoints
+
+### 2. **Tokens Semánticos** (Semantic Tokens)
+Tokens contextuales que referencian primitivos:
+- Colores semánticos: `primary`, `secondary`, `error`, `warning`, `info`, `success`
+- Variantes de tipografía compuestas
+- Se mapean directamente a la estructura del theme de Material UI
+
+### 3. **Tokens de Componente** (Component Tokens)
+Tokens específicos para cada componente:
+- Personalizaciones a nivel de componente
+- Valores específicos para Rating, Chip, Input, Alert, etc.
+
+## 📦 Instalación
+
+```bash
+npm install mrs-design-system
+```
+
+## 🚀 Uso Básico
+
+### Configuración del Theme
+
+Todos los componentes requieren el `ThemeProvider` de Material UI:
+
+```tsx
+import { ThemeProvider } from '@mui/material';
+import { theme, Button } from 'mrs-design-system';
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Button variant="contained" color="primary">
+        Click me
+      </Button>
+    </ThemeProvider>
+  );
+}
+```
+
+### Modo Oscuro
+
+El sistema soporta temas claro y oscuro:
+
+```tsx
+import { useState } from 'react';
+import { ThemeProvider } from '@mui/material';
+import { createAppTheme, Button } from 'mrs-design-system';
+
+function App() {
+  const [mode, setMode] = useState<'light' | 'dark'>('light');
+  const theme = createAppTheme(mode);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Button onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
+        Toggle {mode === 'light' ? 'Dark' : 'Light'} Mode
+      </Button>
+    </ThemeProvider>
+  );
+}
+```
+
+## 📚 Navegación en la Documentación
+
+### Por Categoría
+
+Los componentes están organizados por categorías siguiendo el principio de **Atomic Design**:
+
+- **Atoms** (Átomos): Componentes básicos e indivisibles
+  - Button, Typography, Icon, Badge, Chip, Tag
+  
+- **Molecules** (Moléculas): Componentes compuestos simples
+  - Card, List, ListItem, Select, Checkbox, Radio, Switch
+  
+- **Organisms** (Organismos): Componentes complejos
+  - AppBar, Stepper, Accordion, AccordionGroup
+
+### Por Funcionalidad
+
+También puedes buscar componentes por su función:
+
+- **Formularios**: Button, Checkbox, Radio, Switch, Select
+- **Navegación**: AppBar, Stepper
+- **Contenido**: Card, Typography, List, Accordion
+- **Feedback**: Badge, Chip, Tag, Tooltip
+- **Layout**: Paper, Divider
+
+## 🎨 Principios de Diseño
+
+### Consistencia
+Todos los componentes siguen los mismos principios de diseño definidos en Figma, garantizando una experiencia visual coherente.
+
+### Accesibilidad
+Los componentes están diseñados siguiendo las pautas WCAG para asegurar que sean accesibles para todos los usuarios.
+
+### Responsive
+Diseño mobile-first que se adapta a diferentes tamaños de pantalla.
+
+### TypeScript
+Tipado completo para mejor experiencia de desarrollo y detección temprana de errores.
+
+## 🔍 Cómo Usar Esta Documentación
+
+1. **Explorar Componentes**: Navega por las categorías en el menú lateral
+2. **Ver Ejemplos**: Cada componente tiene múltiples stories mostrando diferentes variantes
+3. **Copiar Código**: Usa el panel "Show code" para ver el código de cada ejemplo
+4. **Ajustar Props**: Usa los controles interactivos para probar diferentes configuraciones
+5. **Leer la API**: Revisa la documentación de props en la pestaña "Docs"
+
+## 📖 Recursos Adicionales
+
+- [Guía de Tokens de Diseño](./?path=/docs/introduction-design-tokens--docs)
+- [Mejores Prácticas](./?path=/docs/introduction-best-practices--docs)
+- [Guía de Contribución](./?path=/docs/introduction-contributing--docs)
+
+## 🆘 Soporte
+
+Si tienes preguntas o encuentras problemas:
+
+1. Revisa la documentación del componente específico
+2. Consulta los ejemplos en las stories
+3. Abre un issue en el repositorio del proyecto
+
+---
+
+**¡Comienza explorando los componentes en el menú lateral!** 🚀
+
