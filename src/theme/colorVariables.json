@@ -1,0 +1,485 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "metadata": {
+    "name": "MRS Design System - Color Variables",
+    "version": "1.0.0",
+    "description": "Optimized global color variables for MRS Design System. Organized hierarchically: Primitives → Semantic → Component colors.",
+    "lastUpdated": "2025-12-01",
+    "source": "Figma Design Variables + Material UI Best Practices",
+    "materialUIVersion": "7.2.0"
+  },
+  "primitive": {
+    "verones": {
+      "value": "#00686f",
+      "type": "color",
+      "description": "Primary color - source: material/colors/verones"
+    },
+    "deepPurple": {
+      "500": {
+        "value": "#673ab7",
+        "type": "color"
+      }
+    },
+    "white": {
+      "value": "#ffffff",
+      "type": "color"
+    },
+    "gray": {
+      "50": { "value": "#fafafa", "type": "color" },
+      "100": { "value": "#f5f5f5", "type": "color" },
+      "200": { "value": "#eeeeee", "type": "color" },
+      "300": { "value": "#e0e0e0", "type": "color" },
+      "400": { "value": "#bdbdbd", "type": "color" },
+      "500": { "value": "#9e9e9e", "type": "color" },
+      "600": { "value": "#757575", "type": "color" },
+      "700": { "value": "#616161", "type": "color" },
+      "800": { "value": "#424242", "type": "color" },
+      "900": { "value": "#212121", "type": "color" }
+    }
+  },
+  "semantic": {
+    "primary": {
+      "main": {
+        "value": "#00686f",
+        "type": "color",
+        "description": "Aliased from primitive.verones"
+      },
+      "dark": {
+        "value": "#004e53",
+        "type": "color"
+      },
+      "light": {
+        "value": "#009999",
+        "type": "color"
+      },
+      "contrastText": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "states": {
+        "hover": {
+          "value": "rgba(0, 153, 153, 0.12)",
+          "type": "color"
+        },
+        "selected": {
+          "value": "rgba(0, 153, 153, 0.16)",
+          "type": "color"
+        },
+        "focus": {
+          "value": "rgba(0, 153, 153, 0.12)",
+          "type": "color"
+        },
+        "active": {
+          "value": "rgba(0, 153, 153, 0.24)",
+          "type": "color"
+        }
+      }
+    },
+    "secondary": {
+      "main": {
+        "value": "#99cc00",
+        "type": "color"
+      },
+      "contrastText": {
+        "value": "rgba(0, 0, 0, 0.87)",
+        "type": "color"
+      },
+      "states": {
+        "hover": {
+          "value": "rgba(153, 204, 0, 0.12)",
+          "type": "color"
+        },
+        "selected": {
+          "value": "rgba(153, 204, 0, 0.16)",
+          "type": "color"
+        },
+        "focus": {
+          "value": "rgba(153, 204, 0, 0.12)",
+          "type": "color"
+        }
+      }
+    },
+    "error": {
+      "main": {
+        "value": "#ab1a1a",
+        "type": "color"
+      },
+      "contrastText": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "light": {
+        "value": "#e57373",
+        "type": "color"
+      },
+      "dark": {
+        "value": "#c62828",
+        "type": "color"
+      },
+      "states": {
+        "hover": {
+          "value": "rgba(171, 26, 26, 0.12)",
+          "type": "color"
+        },
+        "focus": {
+          "value": "rgba(171, 26, 26, 0.3)",
+          "type": "color"
+        }
+      }
+    },
+    "warning": {
+      "main": {
+        "value": "#dfa00a",
+        "type": "color"
+      },
+      "contrastText": {
+        "value": "rgba(0, 0, 0, 0.87)",
+        "type": "color"
+      },
+      "light": {
+        "value": "#ffb74d",
+        "type": "color"
+      },
+      "dark": {
+        "value": "#f57c00",
+        "type": "color"
+      },
+      "states": {
+        "hover": {
+          "value": "rgba(223, 160, 10, 0.12)",
+          "type": "color"
+        }
+      }
+    },
+    "info": {
+      "main": {
+        "value": "#2481b8",
+        "type": "color"
+      },
+      "contrastText": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "light": {
+        "value": "#64b5f6",
+        "type": "color"
+      },
+      "dark": {
+        "value": "#1976d2",
+        "type": "color"
+      },
+      "states": {
+        "hover": {
+          "value": "rgba(36, 129, 184, 0.12)",
+          "type": "color"
+        }
+      }
+    },
+    "success": {
+      "main": {
+        "value": "#2e7d32",
+        "type": "color"
+      },
+      "contrastText": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "light": {
+        "value": "#81c784",
+        "type": "color"
+      },
+      "dark": {
+        "value": "#388e3c",
+        "type": "color"
+      },
+      "states": {
+        "hover": {
+          "value": "rgba(46, 125, 50, 0.12)",
+          "type": "color"
+        }
+      }
+    },
+    "background": {
+      "default": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "paper": {
+        "elevation0": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "elevation1": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "elevation2": {
+          "value": "#fafafa",
+          "type": "color"
+        },
+        "elevation4": {
+          "value": "#f5f5f5",
+          "type": "color"
+        }
+      }
+    },
+    "text": {
+      "primary": {
+        "value": "rgba(0, 0, 0, 0.87)",
+        "type": "color",
+        "description": "High emphasis text"
+      },
+      "secondary": {
+        "value": "rgba(0, 0, 0, 0.6)",
+        "type": "color",
+        "description": "Medium emphasis text"
+      },
+      "disabled": {
+        "value": "rgba(0, 0, 0, 0.38)",
+        "type": "color"
+      },
+      "hint": {
+        "value": "rgba(0, 0, 0, 0.38)",
+        "type": "color"
+      }
+    },
+    "action": {
+      "active": {
+        "value": "rgba(0, 0, 0, 0.56)",
+        "type": "color"
+      },
+      "hover": {
+        "value": "rgba(0, 0, 0, 0.08)",
+        "type": "color"
+      },
+      "selected": {
+        "value": "rgba(0, 0, 0, 0.12)",
+        "type": "color"
+      },
+      "disabled": {
+        "value": "rgba(0, 0, 0, 0.38)",
+        "type": "color"
+      },
+      "disabledBackground": {
+        "value": "rgba(0, 0, 0, 0.12)",
+        "type": "color"
+      },
+      "focus": {
+        "value": "rgba(0, 0, 0, 0.12)",
+        "type": "color"
+      }
+    },
+    "divider": {
+      "value": "rgba(0, 0, 0, 0.12)",
+      "type": "color"
+    }
+  },
+  "component": {
+    "rating": {
+      "activeFill": {
+        "value": "#ffb400",
+        "type": "color"
+      },
+      "enabledBorder": {
+        "value": "rgba(0, 0, 0, 0.23)",
+        "type": "color"
+      },
+      "disabled": {
+        "value": "rgba(0, 0, 0, 0.12)",
+        "type": "color"
+      }
+    },
+    "chip": {
+      "defaultCloseFill": {
+        "value": "#000000",
+        "type": "color"
+      },
+      "defaultEnabledBorder": {
+        "value": "#bdbdbd",
+        "type": "color"
+      },
+      "outlinedBorder": {
+        "value": "rgba(0, 0, 0, 0.23)",
+        "type": "color"
+      }
+    },
+    "input": {
+      "standard": {
+        "enabledBorder": {
+          "value": "rgba(0, 0, 0, 0.42)",
+          "type": "color"
+        },
+        "disabledBorder": {
+          "value": "rgba(0, 0, 0, 0.12)",
+          "type": "color"
+        },
+        "focusedBorder": {
+          "value": "#00686f",
+          "type": "color"
+        }
+      },
+      "filled": {
+        "enabledFill": {
+          "value": "rgba(0, 0, 0, 0.06)",
+          "type": "color"
+        },
+        "hoverFill": {
+          "value": "rgba(0, 0, 0, 0.08)",
+          "type": "color"
+        },
+        "focusedFill": {
+          "value": "rgba(0, 0, 0, 0.06)",
+          "type": "color"
+        }
+      },
+      "outlined": {
+        "enabledBorder": {
+          "value": "rgba(0, 0, 0, 0.23)",
+          "type": "color"
+        },
+        "hoverBorder": {
+          "value": "rgba(0, 0, 0, 0.87)",
+          "type": "color"
+        },
+        "focusedBorder": {
+          "value": "#00686f",
+          "type": "color"
+        },
+        "errorBorder": {
+          "value": "#ab1a1a",
+          "type": "color"
+        }
+      }
+    },
+    "alert": {
+      "error": {
+        "color": {
+          "value": "#5f2120",
+          "type": "color"
+        },
+        "background": {
+          "value": "#fdeded",
+          "type": "color"
+        },
+        "border": {
+          "value": "#ab1a1a",
+          "type": "color"
+        }
+      },
+      "warning": {
+        "color": {
+          "value": "#3e2410",
+          "type": "color"
+        },
+        "background": {
+          "value": "#fff3e0",
+          "type": "color"
+        },
+        "border": {
+          "value": "#dfa00a",
+          "type": "color"
+        }
+      },
+      "info": {
+        "color": {
+          "value": "#014361",
+          "type": "color"
+        },
+        "background": {
+          "value": "#e5f6fd",
+          "type": "color"
+        },
+        "border": {
+          "value": "#2481b8",
+          "type": "color"
+        }
+      },
+      "success": {
+        "color": {
+          "value": "#1e4620",
+          "type": "color"
+        },
+        "background": {
+          "value": "#edf7ed",
+          "type": "color"
+        },
+        "border": {
+          "value": "#2e7d32",
+          "type": "color"
+        }
+      }
+    },
+    "stepper": {
+      "connector": {
+        "value": "#9e9e9d",
+        "type": "color"
+      },
+      "completedStep": {
+        "backgroundColor": {
+          "value": "#00796b",
+          "type": "color"
+        },
+        "textColor": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "activeStep": {
+        "backgroundColor": {
+          "value": "#00686f",
+          "type": "color"
+        },
+        "textColor": {
+          "value": "#ffffff",
+          "type": "color"
+        }
+      },
+      "inactiveStep": {
+        "backgroundColor": {
+          "value": "#e0e0e0",
+          "type": "color"
+        },
+        "textColor": {
+          "value": "rgba(0, 0, 0, 0.6)",
+          "type": "color"
+        }
+      }
+    },
+    "button": {
+      "contained": {
+        "default": {
+          "value": "#00686f",
+          "type": "color"
+        },
+        "hover": {
+          "value": "#005a61",
+          "type": "color"
+        },
+        "active": {
+          "value": "#004e53",
+          "type": "color"
+        },
+        "disabled": {
+          "value": "rgba(0, 0, 0, 0.12)",
+          "type": "color"
+        }
+      },
+      "outlined": {
+        "border": {
+          "value": "#00686f",
+          "type": "color"
+        },
+        "hoverBackground": {
+          "value": "rgba(0, 153, 153, 0.12)",
+          "type": "color"
+        }
+      },
+      "text": {
+        "hoverBackground": {
+          "value": "rgba(0, 0, 0, 0.08)",
+          "type": "color"
+        }
+      }
+    }
+  }
+}
