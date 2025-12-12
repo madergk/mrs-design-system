@@ -36,3 +36,10 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 
+# Package artifacts
+*.tgz
+
+# Coverage
+.nyc_output/
+
+.vercel
