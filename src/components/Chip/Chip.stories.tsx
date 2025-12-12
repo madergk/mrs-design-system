@@ -67,7 +67,12 @@ export const Default: Story = {
     label: 'Chip',
     variant: 'outlined',
     color: 'secondary',
-    size: 'small',
+    size: 'medium',
+    deleteIcon: {
+      type: '',
+      props: undefined,
+      key: null,
+    },
   },
 };
 
