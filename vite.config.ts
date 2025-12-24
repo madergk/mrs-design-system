@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import dts from 'vite-plugin-dts';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -7,7 +8,10 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    dts({ insertTypesEntry: true }),
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
@@ -16,13 +20,10 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      formats: ['es'],
+      formats: ['es', 'cjs'],
+      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
     },
     rollupOptions: {
-      input: {
-        index: resolve(__dirname, 'src/index.ts'),
-        theme: resolve(__dirname, 'src/theme/index.ts'),
-      },
       external: [
         'react',
         'react-dom',
@@ -32,10 +33,10 @@ export default defineConfig({
         '@emotion/styled',
       ],
       output: {
-        entryFileNames: (chunkInfo) => {
-          return chunkInfo.name === 'index' ? 'index.js' : `${chunkInfo.name}/index.js`;
-        },
+        preserveModules: false,
       },
     },
+    sourcemap: true,
+    minify: 'esbuild',
   },
 });
